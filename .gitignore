@@ -1,2 +1,8 @@
 
 .DS_Store
+Makefile
+*.o
+*.pro.user
+moc_*.cpp
+qrc_resources.cpp
+FreeStroke.app
