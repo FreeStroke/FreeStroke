@@ -2,6 +2,7 @@ FreeStroke
 ==========
 
 Shortcuts with your body.
+http://freestroke.fr
 
 # What is this?
 
