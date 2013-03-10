@@ -1,0 +1,24 @@
+// FreeSoft ressource version files
+
+#include <winver.h>
+
+#define	VER_FILETYPE	VFT_DLL
+#define	VER_FILESUBTYPE	VFT2_UNKNOWN
+
+#define VER_INTERNALNAME_STR        "FreeStroke.exe"
+#define VER_ORIGINALFILENAME_STR    "FreeStroke.exe"
+
+#define VER_COMPANYNAME_STR         "FreeSoft"
+#define VER_FILEDESCRIPTION_STR     "FreeStroke"
+#define VER_LEGALCOPYRIGHT_STR      "FreeSoft (c) 2012"
+
+#define VER_PRODUCTNAME_STR         VER_FILEDESCRIPTION_STR
+
+#define VER_PRODUCTVERSION	    0,0,1,00
+
+#define XSTR(s) STR(s)
+#define STR(s) #s
+
+#define VER_PRODUCTVERSION_STR  " " XSTR(1) "." XSTR(0) "." XSTR(0)
+
+IDI_ICON1	ICON	DISCARDABLE     "FreeStroke.ico"

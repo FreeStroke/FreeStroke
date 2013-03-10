@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<recordings>
+  <recording name="MyTestRecord2">
+    <order type="1">toto</order>
+    <movement>
+      <skeleton timestamp="1000">
+        <joint name="0">
+          <coordinates>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </coordinates>
+        </joint>
+      </skeleton>
+    </movement>
+  </recording>
+</recordings>

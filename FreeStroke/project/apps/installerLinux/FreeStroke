@@ -1,0 +1,5 @@
+#!/bin/bash
+#FreeStroke script
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/FreeSoft/libs/
+/opt/FreeSoft/FreeStroke-linux
+

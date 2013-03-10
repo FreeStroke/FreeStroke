@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version = 1.0
+Encoding=UTF-8
+Name=FreeStroke
+Comment=Gesture Recognition Application
+Exec=/opt/FreeSoft/FreeStroke
+Icon=/opt/FreeSoft/FreeStroke-icon
+Terminal=false
+Type=Application
+Categories=Applications;
+TargetEnvironment=Unity
+Name[fr_FR]=FreeStroke
