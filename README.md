@@ -1,7 +1,7 @@
 FreeStroke
 ==========
 
-Shortcuts with your body.
+Shortcuts with your body.<br />
 http://freestroke.fr
 
 # What is this?
@@ -26,8 +26,8 @@ We used Visual Studio 2012 ultimate to compile the code.
 
 You must install Qt 4.8 to compile the project.
 
-If you're on Windows open the file FreeStroke/project/Win32 and setup the compile location on this directory.
-If you're on OSX open the file FreeStroke/project/mac and setup the compile location on this directory.
+If you're on Windows open the file FreeStroke/project/Win32 and setup the compile location on this directory.<br />
+If you're on OSX open the file FreeStroke/project/mac and setup the compile location on this directory.<br />
 If you're on Linux open the file FreeStroke/project/linux and setup the compile location on this directory.
 
 # Running
