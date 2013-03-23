@@ -1,4 +1,32 @@
-﻿/*!
+﻿/*
+ * Projet de fin d'�tudes LastProject de
+ * Adrien Broussolle
+ * Camille Darcy
+ * Guillaume Demurger
+ * Sylvain Fay-Chatelard
+ * Anthony Fourneau
+ * Aurèle Lenfant
+ * Adrien Madouasse
+ *
+ * Copyright (C) 2013 Université Paris-Est Marne-la-Vallée 
+ *
+ * FreeStroke is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+ *
+ */
+
+/*!
  * \file KController.cs
  * \author Sylvain Fay-Châtelard & Adrien Madouasse
  * \brief The controller, entrance of the application, initialize GUI
@@ -70,14 +98,14 @@ namespace KController
             }
             catch (System.IO.DirectoryNotFoundException e)
             {
-                Console.Write("System.IO.DirectoryNotFoundException" + e.Message);
+                Console.Write("System.IO.DirectoryNotFoundException " + e.Message);
                 name = defaultName;
                 udpPort = defaultUdpPort;
                 tcpPort = defaultTcpPort;
             }
             catch (System.IO.FileNotFoundException e)
             {
-                Console.Write("System.IO.DirectoryNotFoundException" + e.Message);
+                Console.Write("System.IO.FileNotFoundException " + e.Message);
                 name = defaultName;
                 udpPort = defaultUdpPort;
                 tcpPort = defaultTcpPort;
@@ -90,7 +118,7 @@ namespace KController
 
             // Initiliaze servers and kinect
             udpServer = new UDPServer(name, udpPort, tcpPort);
-            tcpServer = new TCPServer(this, udpServer, tcpPort);
+            tcpServer = new TCPServer(this, tcpPort);
             kinect = new Kinect(this, tcpServer);
 
             // Start Kinect and servers
@@ -98,8 +126,6 @@ namespace KController
             {
                 this.changeState(KinectState.WAITING);
             }
-            tcpServer.start();
-            udpServer.start();
         }
 
         /*!
@@ -112,12 +138,17 @@ namespace KController
             {
                 case KinectState.DISCONNECTED:
                     picState.Image = global::KController.Properties.Resources.state_red;
+                    udpServer.stop();
+                    tcpServer.stop();
                     break;
                 case KinectState.WAITING:
                     picState.Image = global::KController.Properties.Resources.state_orange;
+                    udpServer.start();
+                    tcpServer.start();
                     break;
                 case KinectState.CONNECTED:
                     picState.Image = global::KController.Properties.Resources.state_green;
+                    udpServer.stop();
                     break;
             }
         }
@@ -133,13 +164,13 @@ namespace KController
             {
                 udpServer.stop();
             }
-            if (tcpServer != null)
-            {
-                tcpServer.stop();
-            }
             if (kinect != null)
             {
                 kinect.stop();
+            }
+            if (tcpServer != null)
+            {
+                tcpServer.stop();
             }
         }
 

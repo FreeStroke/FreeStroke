@@ -1,6 +1,34 @@
-ï»¿/*!
+/*
+ * Projet de fin d'études LastProject de
+ * Adrien Broussolle
+ * Camille Darcy
+ * Guillaume Demurger
+ * Sylvain Fay-Chatelard
+ * Anthony Fourneau
+ * Aurèle Lenfant
+ * Adrien Madouasse
+ *
+ * Copyright (C) 2013 Université Paris-Est Marne-la-Vallée 
+ *
+ * FreeStroke is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+ *
+ */
+
+/*!
  * \file TCPServer.cs
- * \author Sylvain Fay-ChÃ¢telard & Adrien Madouasse
+ * \author Sylvain Fay-Châtelard & Adrien Madouasse
  * \brief TCP communication with a FreeStroke to send Kinect data
  * \date 2013-03-07
  */
@@ -28,8 +56,6 @@ namespace KController
         private TcpListener socket = null;
         /*!< The TCP client socket */
         private TcpClient client = null;
-        /*!< The UDP server */
-        private UDPServer udpServer = null;
         /*!< The TCP port */
         private ushort port;
         /*!< The stream in which the write to send data to the client */
@@ -51,10 +77,9 @@ namespace KController
          * \param udp The UDP server
          * \param port The TCP port
          */
-        public TCPServer(KController controller, UDPServer udp, ushort port)
+        public TCPServer(KController controller, ushort port)
         {
             this.controller = controller;
-            this.udpServer = udp;
             this.port = port;
         }
 
@@ -79,8 +104,12 @@ namespace KController
          */
         public void start()
         {
-            thread = new Thread(this.private_start);
-            thread.Start();
+            if (thread == null && !run)
+            {
+                thread = new Thread(this.private_start);
+                thread.Name = "TCP Thread";
+                thread.Start();
+            }
         }
 
         /*!
@@ -117,8 +146,17 @@ namespace KController
         private void private_start()
         {
             run = true;
-            socket = new TcpListener(System.Net.IPAddress.Any, port);
-            socket.Start();
+
+            try
+            {
+                socket = new TcpListener(System.Net.IPAddress.Any, port);
+                socket.Start();
+            }
+            catch (System.Net.Sockets.SocketException e)
+            {
+                MessageBox.Show("TCP port is already used");
+                Application.Exit();
+            }
 
             // Accept loop
             while (run)
@@ -129,17 +167,16 @@ namespace KController
                     exchangeEnded = false;
                     client = socket.AcceptTcpClient();
                     controller.changeState(KController.KinectState.CONNECTED);
-                    udpServer.stop();
                     stream = client.GetStream();
 
                     // Secure the connection
                     diffieHellmanExchange();
                     exchangeEnded = true;
+
                     // Loop to send no data to detect when the communication is dead
                     while (run && client.Connected)
                     {
-                        /*byte[] b = { 0 };
-                        this.sendRawData(b);*/
+                        // Wait a little to not overload network
                         System.Threading.Thread.Sleep(100);
                     }
                     
@@ -149,13 +186,10 @@ namespace KController
                         client.Close();
                     }
                     controller.changeState(KController.KinectState.WAITING);
-                    udpServer.start();
-                    Console.WriteLine("Restart UDP");
                 }
                 catch (System.IO.IOException e)
                 {
                     client = null;
-                    udpServer.start();
                     controller.changeState(KController.KinectState.WAITING);
                     Console.WriteLine("TCP : System.IO.IOException " + e.Message);
                 }
@@ -163,14 +197,12 @@ namespace KController
                 {
                     this.stop();
                     client = null;
-                    udpServer.start();
                     controller.changeState(KController.KinectState.WAITING);
                     Console.WriteLine("TCP : System.InvalidOperationException " + e.Message);
                 }
                 catch (System.Net.Sockets.SocketException e)
                 {
                     client = null;
-                    controller.changeState(KController.KinectState.WAITING);
                     Console.WriteLine("TCP : System.Net.Sockets.SocketException " + e.Message);
                     return;
                 }
@@ -186,9 +218,21 @@ namespace KController
             {
                 run = false;
                 aes = null;
-                client.Close();
-                socket.Stop();
-                thread.Abort();
+                if (client != null)
+                {
+                    client.Close();
+                    client = null;
+                }
+                if (socket != null)
+                {
+                    socket.Stop();
+                    socket = null;
+                }
+                if (thread != null)
+                {
+                    thread.Abort();
+                    thread = null;
+                }
             }
             catch (System.Net.Sockets.SocketException e)
             {

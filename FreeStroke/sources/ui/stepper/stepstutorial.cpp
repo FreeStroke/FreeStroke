@@ -1,3 +1,29 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include "../../includes/ui/stepper/stepstutorial.h"
 #include "../../includes/daolayer/daolayer.h"
 #include "../../includes/ui/video/videocomponent.h"
@@ -13,22 +39,37 @@
 
 StepsTutorial::StepsTutorial(QWidget *pParent, bool isFirstLaunch)
 {
-    bool showCancel = !isFirstLaunch;
     int labelFontSize = 16;
     QColor labelColor = QColor(230,230,230);
     this->stepper = new Stepper(pParent);
+
+    /* Local */
+    QString locale = QLocale::system().name().section('_', 0, 0);
+    XmlConf* conf = Xml().importConfig(Utils::getConfigLocation());
+    if (conf != NULL)
+    {
+        if (conf->language != NULL)
+        {
+            locale = conf->language;
+        }
+    }
+    if (locale.compare("en") != 0 && locale.compare("fr") != 0)
+    {
+        locale = "en";
+    }
 
     /* STEP 1 */
     QWidget* step1 = new QWidget(pParent);
     step1->setFixedSize(600,400);
     QVBoxLayout* vLayoutStep1 = new QVBoxLayout(step1);
-    Label* lblStep1Top = new Label(tr("\n\nWelcome on FreeStroke!\n\nThe purpose of FreeStroke is to allow you to configure actions on your computer \ntriggered by gestures you make face to the Kinect.\nThis tutorial will show you the basic features of the FreeStroke application and how \nto use it.\n\nThere is 3 main views in Freestroke:\n\n - Execution view: Display the real time stand of your body and list the last \nrecognized gestures.\n\n - Gestures list view: Display the list of the registered gestures on the left. Clicking \non a gesture display its representation in the center view\n\n - Parameters view: Here are the settings of FreeStroke.\n\n"),step1);
+    Label* lblStep1Top = new Label(tr("\n\nWelcome on FreeStroke!\n\nThis tutorial will explain you how to use the application.\n\n"),step1);
     lblStep1Top->setTextColor(labelColor);
     lblStep1Top->changeFontSize(labelFontSize);
-    lblStep1Top->setAlignment(Qt::AlignLeft);
-
+    lblStep1Top->setAlignment(Qt::AlignCenter);
+    lblStep1Top->setPaintShadow(false);
+    lblStep1Top->changeFontSize(labelFontSize);
     vLayoutStep1->addWidget(lblStep1Top);
-    stepper->addStep(tr("Presentation"),true,false,showCancel,step1);
+    stepper->addStep(tr("Presentation"),true,false,true,step1);
 
     if(isFirstLaunch)
     {
@@ -42,41 +83,50 @@ StepsTutorial::StepsTutorial(QWidget *pParent, bool isFirstLaunch)
         lblStep2->setPaintShadow(false);
         vLayoutStep2->addWidget(lblStep2);
 
-        DialogButton* btnController = new DialogButton("Search",DialogButton::Dark,step2);
+        DialogButton* btnController = new DialogButton(tr("Search"),DialogButton::Dark,step2);
         btnController->setFixedHeight(35);
         connect(btnController, SIGNAL(clicked()), this, SLOT(discoverController()));
-        stepper->addStep(tr("Presentation 2/2"),false,true,showCancel,step2);
+        stepper->addStep(tr("Presentation 2/2"),false,true,true,step2);
 
         btnController->move(step2->width()/2 - btnController->width()/2, step2->height()/2 - btnController->height() /2 + 75);
     }
-    /*else
-    {
-        /* STEP 2 bis */
-        /*QWidget* step2 = new QWidget(pParent);
-        step2->setFixedSize(600,400);
-        QVBoxLayout* vLayoutStep2 = new QVBoxLayout(step2);
-        VideoComponent *vp = new VideoComponent("/Users/guillaumedemurger/Documents/LastProject/FreeStroke/essai.gif", step2);
-        vLayoutStep2->addWidget(vp);
-        stepper->addStep(tr("How to change the KController"), true, true, showCancel, step2);
-    }*/
 
-    /* STEP 4 */
+    /* STEP 3 */
     QWidget* step4 = new QWidget(pParent);
     step4->setFixedSize(600,400);
     QVBoxLayout* vLayoutStep4 = new QVBoxLayout(step4);
-    VideoComponent *vp = new VideoComponent("/Users/guillaumedemurger/Documents/LastProject/FreeStroke/essai.gif", step4);
-    vLayoutStep4->addWidget(vp);
-    stepper->addStep(tr("How to Register and Configure a Gesture"),true,true,showCancel,step4);
+    vLayoutStep4->setSpacing(0);
+    vLayoutStep4->setMargin(0);
+    QLabel *picRegister = new QLabel(step4);
+    picRegister->resize(600, 400);
+    picRegister->setPixmap(QPixmap(Utils::getResourcesDirectory() + "/tuto/register_" + locale + ".png"));
+    stepper->addStep(tr("Recording mode"),true,true,!isFirstLaunch,step4);
 
-    /* STEP 5 */
+    /* STEP 4 */
     QWidget* step5 = new QWidget(pParent);
     step5->setFixedSize(600,400);
     QVBoxLayout* vLayoutStep5 = new QVBoxLayout(step5);
-    Label* lblStep5Top = new Label(tr("\n\nYou finished the tutorial.\n\nWe hope you will have a good experience with FreeStroke.\n\n"),step5);
+    vLayoutStep5->setMargin(0);
+    Label* lblStep5Top = new Label(tr("\n\nThe recording of a gesture MUST start and end with a neutral stance.\n\n"),step5);
     lblStep5Top->setTextColor(labelColor);
     lblStep5Top->changeFontSize(labelFontSize);
+    lblStep5Top->setPaintShadow(false);
+    lblStep5Top->setFixedHeight(60);
+    QLabel *picNeutral = new QLabel(step5);
+    QPixmap pix = QPixmap(Utils::getResourcesDirectory() + "/tuto/neutral_" + locale + ".png");
+    picNeutral->setPixmap(pix);
     vLayoutStep5->addWidget(lblStep5Top);
-    stepper->addStep(tr("Tutoriel finished"),true,true,showCancel,step5);
+    vLayoutStep5->addWidget(picNeutral);
+    stepper->addStep(tr("Neutral Position"),true,true,!isFirstLaunch,step5);
+
+    /* STEP 5 */
+    QWidget* step6 = new QWidget(pParent);
+    step6->setFixedSize(600,400);
+    QLabel *picExecution = new QLabel(step6);
+    picExecution->resize(600, 400);
+    picExecution->setPixmap(QPixmap(Utils::getResourcesDirectory() + "/tuto/execution_" + locale + ".png"));
+    stepper->addStep(tr("Execution mode"),true,true,!isFirstLaunch,step6);
+
 }
 
 void StepsTutorial::discoverController()

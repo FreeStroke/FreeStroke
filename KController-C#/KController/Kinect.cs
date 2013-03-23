@@ -1,6 +1,34 @@
-ï»¿/*!
+/*
+ * Projet de fin d'études LastProject de
+ * Adrien Broussolle
+ * Camille Darcy
+ * Guillaume Demurger
+ * Sylvain Fay-Chatelard
+ * Anthony Fourneau
+ * Aurèle Lenfant
+ * Adrien Madouasse
+ *
+ * Copyright (C) 2013 Université Paris-Est Marne-la-Vallée 
+ *
+ * FreeStroke is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+ *
+ */
+
+/*!
  * \file Kinect.cs
- * \author Sylvain Fay-ChÃ¢telard & Adrien Madouasse
+ * \author Sylvain Fay-Châtelard & Adrien Madouasse
  * \brief Communication with the Kinect to retrieve skeleton data
  * \date 2013-03-07
  */
@@ -11,6 +39,7 @@ using System.Text;
 using System.IO;
 using Microsoft.Kinect;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace KController
 {
@@ -27,7 +56,7 @@ namespace KController
         /*!< Check if it is the first skeleton */
         private bool isFirstSkeleton = false;
         /*!< The thread in which the object is used */
-        private Thread thread;
+        private Thread thread = null;
         /*!< The reference to the GUI */
         private KController controller = null;
         /*!< The TCP sever */
@@ -81,13 +110,17 @@ namespace KController
         {
             // Get first Kinect Sensor
             kinect = KinectSensor.KinectSensors.FirstOrDefault(s => s.Status == KinectStatus.Connected);
+            KinectSensor.KinectSensors.StatusChanged += kinect_StatusChanged;
             if (kinect == null)
             {
                 return false;
             }
-            KinectSensor.KinectSensors.StatusChanged += kinect_StatusChanged;
-            thread = new Thread(this.private_start);
-            thread.Start();
+            if (thread == null)
+            {
+                thread = new Thread(this.private_start);
+                thread.Name = "Kinect Thread";
+                thread.Start();
+            }
             return true;
         }
 
@@ -100,6 +133,7 @@ namespace KController
             if (thread != null)
             {
                 thread.Abort();
+                thread = null;
             }
         }
 
@@ -108,11 +142,19 @@ namespace KController
          */
         private void private_start()
         {
-            kinect.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
-            kinect.SkeletonStream.Enable(); // Enable skeletal tracking
-            skeletonData = new Skeleton[kinect.SkeletonStream.FrameSkeletonArrayLength]; // Allocate ST data
-            kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinect_SkeletonFrameReady); // Get Ready for Skeleton Ready Events
-            kinect.Start(); // Start Kinect sensor
+            try
+            {
+                kinect.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
+                kinect.SkeletonStream.Enable(); // Enable skeletal tracking
+                skeletonData = new Skeleton[kinect.SkeletonStream.FrameSkeletonArrayLength]; // Allocate ST data
+                kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinect_SkeletonFrameReady); // Get Ready for Skeleton Ready Events
+                kinect.Start(); // Start Kinect sensor
+            }
+            catch (System.IO.IOException e)
+            {
+                MessageBox.Show("Kinect is already used by another program");
+                Application.Exit();
+            }
         }
 
         /*!
@@ -124,6 +166,7 @@ namespace KController
             {
                 kinect.Stop();
                 kinect.Dispose();
+                kinect = null;
             }
         }
 
@@ -137,12 +180,23 @@ namespace KController
             switch (e.Status)
             {
                 case KinectStatus.Connected:
+                    kinect = KinectSensor.KinectSensors.FirstOrDefault(s => s.Status == KinectStatus.Connected);
+                    if (kinect == null)
+                    {
+                        return;
+                    }
+                    if (thread == null)
+                    {
+                        thread = new Thread(this.private_start);
+                        thread.Start();
+                    }
                     controller.changeState(KController.KinectState.WAITING);
                     break;
                 case KinectStatus.Disconnected:
                 case KinectStatus.NotReady:
                 case KinectStatus.NotPowered:
                 default:
+                    this.stop();
                     controller.changeState(KController.KinectState.DISCONNECTED);
                     break;
             }

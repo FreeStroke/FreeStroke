@@ -67,10 +67,14 @@ Section "-CRT" crt_section
 	File /oname=$0 vcredist_x86.exe
 	ExecWait "$0 /q"
 	Delete $0
-    GetTempFileName $1
+    	GetTempFileName $1
 	File /oname=$1 vcredist_x86_2012.exe
 	ExecWait "$1 /q"
 	Delete $1
+	GetTempFileName $2
+	File /oname=$2 dotNetFx45_Full_setup.exe
+	ExecWait "$2"
+	Delete $2
 SectionEnd
 
 Section "Uninstall"

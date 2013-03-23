@@ -1,3 +1,29 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include "stdafx.h"
 #include "udpserver.h"
 
@@ -69,10 +95,10 @@ void UdpServer::run()
         char buffer[BUFFER_SIZE];
         bytes_received = recvfrom(sockt, buffer, BUFFER_SIZE,
                                   0, (struct sockaddr *)&client, &client_length);
-        bool l = (bytes_received == 1);
+        /*bool l = (bytes_received == 1);
         bool l2 = (buffer[0] == 0);
         bool l3 = respondToClient->load();
-       // cout << l << " " << l2 << " " << l3 << " " << endl;
+       // cout << l << " " << l2 << " " << l3 << " " << endl;*/
         if ((bytes_received == 1) && (buffer[0] == 0) && (respondToClient->load()))
         {
 			int size_answer = 4+(int)(name->size());

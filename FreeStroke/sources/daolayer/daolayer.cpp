@@ -1,3 +1,29 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include <stdio.h>
 #include <QList>
 #include <QtCore/QDebug>
@@ -201,7 +227,7 @@ bool DAOLayer::addRecord(Record *pRecord)
         return false;
     }
 
-    result = sqlite3_bind_text(this->statement, sqlite3_bind_parameter_index(this->statement, ":NAME"), pRecord->getName().toLocal8Bit().data(), (((pRecord->getName()).length())*2)+1,  SQLITE_TRANSIENT);
+    result = sqlite3_bind_text(this->statement, sqlite3_bind_parameter_index(this->statement, ":NAME"), pRecord->getName().toUtf8().data(), (((pRecord->getName()).length())*2)+1,  SQLITE_TRANSIENT);
     if(result)
     {
         qDebug() << "Can't bind name  request : " << sqlite3_errmsg(this->db);
@@ -217,7 +243,7 @@ bool DAOLayer::addRecord(Record *pRecord)
         qDebug() << "DAOLayer#addRecord() - end" ;
         return 1;
     }
-    result = sqlite3_bind_text(this->statement, sqlite3_bind_parameter_index(this->statement, ":COMM"),(*(pRecord->getCommand())).getDefinition().toLocal8Bit().data(), ((((*(pRecord->getCommand())).getDefinition()).length())*2)+1,  SQLITE_TRANSIENT);
+    result = sqlite3_bind_text(this->statement, sqlite3_bind_parameter_index(this->statement, ":COMM"),(*(pRecord->getCommand())).getDefinition().toUtf8().data(), ((((*(pRecord->getCommand())).getDefinition()).length())*2)+1,  SQLITE_TRANSIENT);
     if(result)
     {
         qDebug() << "Can't bind command  request : " << sqlite3_errmsg(this->db);

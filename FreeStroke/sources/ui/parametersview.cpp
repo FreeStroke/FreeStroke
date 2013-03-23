@@ -1,5 +1,30 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include "../../includes/ui/parametersview.h"
-
 #include <QtGui/QPainter>
 #include <QtGui/QMovie>
 #include <QtGui/QVBoxLayout>
@@ -16,6 +41,7 @@
 #include "../../includes/common/utils.h"
 #include "../../includes/xml/xml.h"
 
+#define LBL_WIDTH 170
 
 ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
 {
@@ -28,7 +54,7 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
     formLayout->setSpacing(30);
 
     Label* labelChangeController = new Label(tr("Change the controller"),container);
-    labelChangeController->setFixedWidth(150);
+    labelChangeController->setFixedWidth(LBL_WIDTH);
     labelChangeController->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ButtonElement* btnChangeController = new ButtonElement(container);
     btnChangeController->setMaximumWidth(150);
@@ -36,7 +62,7 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
     connect(btnChangeController,SIGNAL(clicked()),this,SLOT(discoverController()));
 
     Label* labelShowTutorial = new Label(tr("Show the tutorial"),container);
-    labelShowTutorial->setFixedWidth(150);
+    labelShowTutorial->setFixedWidth(LBL_WIDTH);
     labelShowTutorial->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     ButtonElement* btnShowTutorial = new ButtonElement(container);
     btnShowTutorial->setMaximumWidth(150);
@@ -44,16 +70,18 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
     connect(btnShowTutorial, SIGNAL(clicked()), this, SLOT(launchTutorial()));
 
     Label* labelChangeTCP = new Label(tr("Change TCP Port"),container);
-    labelChangeTCP->setFixedWidth(150);
+    labelChangeTCP->setFixedWidth(LBL_WIDTH);
     labelChangeTCP->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    labelChangeTCP->hide();
     TextField* tfChangeTCP = new TextField(container);
     tfChangeTCP->setMaximumWidth(150);
     connect(tfChangeTCP, SIGNAL(textChanged(QString)), this, SLOT(changeTCPPort(QString)));
     tfChangeTCP->setValidator(new QIntValidator(1, 65535, tfChangeTCP));
+    tfChangeTCP->hide();
 
     Label* labelChangeUDP = new Label(tr("Change UDP Port"),container);
     labelChangeUDP->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelChangeUDP->setFixedWidth(150);
+    labelChangeUDP->setFixedWidth(LBL_WIDTH);
     TextField* tfChangeUDP = new TextField(container);
     tfChangeUDP->setMaximumWidth(150);
     connect(tfChangeUDP, SIGNAL(textChanged(QString)), this, SLOT(changeUDPPort(QString)));
@@ -62,15 +90,16 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
 
     Label* labelChangeUdpBind = new Label(tr("Change UDP bound port"),container);
     labelChangeUdpBind->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelChangeUdpBind->setFixedWidth(150);
+    labelChangeUdpBind->setFixedWidth(LBL_WIDTH);
     TextField* tfChangeUdpBind = new TextField(container);
+    tfChangeUdpBind->setMaximumWidth(150);
     connect(tfChangeUdpBind, SIGNAL(textChanged(QString)), this, SLOT(changeUDPPortBind(QString)));
     QIntValidator(1, 65535, tfChangeUdpBind);
     tfChangeUdpBind->setValidator(new QIntValidator(1, 65535, tfChangeUdpBind));
 
     Label* labelChangeLanguage = new Label(tr("Change language"),container);
-    labelChangeLanguage->setFixedWidth(150);
     labelChangeLanguage->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    labelChangeLanguage->setFixedWidth(LBL_WIDTH);
     ComboBox* comboLanguage = new ComboBox(container);
     comboLanguage->setMaximumWidth(150);
     comboLanguage->addItem("English");
@@ -79,7 +108,7 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
 
     formLayout->addRow(labelChangeController, btnChangeController);
     formLayout->addRow(labelShowTutorial, btnShowTutorial);
-    formLayout->addRow(labelChangeTCP, tfChangeTCP);
+    //formLayout->addRow(labelChangeTCP, tfChangeTCP);
     formLayout->addRow(labelChangeUDP, tfChangeUDP);
     formLayout->addRow(labelChangeUdpBind, tfChangeUdpBind);
     formLayout->addRow(labelChangeLanguage, comboLanguage );
@@ -117,6 +146,9 @@ ParametersView::ParametersView(QWidget *parent) : QWidget(parent)
 
 void ParametersView::checkController()
 {
+    disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),0,0);
+    disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),0,0);
+
     Xml* xml = new Xml();
     XmlConf* conf = xml->importConfig(Utils::getConfigLocation());
 
@@ -130,7 +162,7 @@ void ParametersView::checkController()
         if (conf->controller != NULL)
         {
             connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),this,SLOT(discoverController()));
-            //connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),this,SLOT(discoverController()));
+            connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),this,SLOT(discoverController()));
             MainWindow::getCommunication()->initTcpCommunication(conf->controller);
         }
     }
@@ -138,6 +170,9 @@ void ParametersView::checkController()
 
 void ParametersView::discoverController()
 {
+    disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),0,0);
+    disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),0,0);
+
     MainWindow::getCommunication()->close();
     StepperController* stepper = new StepperController(this);
     connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionEstablished()), stepper, SLOT(next()));
@@ -187,7 +222,7 @@ void ParametersView::discoverController()
         Dialog *d = new Dialog(tr("Controller needed"), this);
         d->addButton(tr("Exit"), Dialog::Accept, DialogButton::Normal, true);
         d->displayNotification(Dialog::Information,tr("Controller needed"), tr("You must have a Controller to use FreeStroke"));
-//        QCoreApplication::quit();
+        //        QCoreApplication::quit();
         return;
     }
 
@@ -208,6 +243,8 @@ void ParametersView::discoverController()
         }
     }
 
+    connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),this,SLOT(discoverController()));
+    connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),this,SLOT(discoverController()));
 }
 
 void ParametersView::changeUDPPort(QString pPort)
@@ -243,8 +280,14 @@ void ParametersView::changeTCPPort(QString pPort)
     XmlConf* conf = Xml().importConfig(Utils::getConfigLocation());
     if (conf != NULL)
     {
+        disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),0,0);
+        disconnect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),0,0);
+
         conf->tcpPort = pPort.toInt();
         Xml().exportConfig(conf, Utils::getConfigLocation());
+
+        connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionRefused()),this,SLOT(discoverController()));
+        connect(MainWindow::getCommunication(), SIGNAL(tcpConnectionClosed()),this,SLOT(discoverController()));
     }
 }
 
@@ -302,10 +345,14 @@ void ParametersView::launchTutorial()
 {
     StepsTutorial *stepper = new StepsTutorial(this, this->isFirstLaunch);
     MainWindow::getExecutionManager()->standby();
-    stepper->show();
+    int code = stepper->show();
     delete stepper;
     stepper = NULL;
-    if (this->isFirstLaunch)
+    if(this->isFirstLaunch && code == Dialog::Rejected)
+    {
+        exit(0);
+    }
+    if (this->isFirstLaunch && code == Dialog::Accepted)
     {
         XmlConf *conf = Xml().importConfig(Utils::getConfigLocation());
         if (conf != NULL)

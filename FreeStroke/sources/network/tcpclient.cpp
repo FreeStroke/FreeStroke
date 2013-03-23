@@ -1,3 +1,29 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include "../../includes/network/tcpclient.h"
 
 /*!
@@ -25,6 +51,7 @@ TcpClient::TcpClient(QString pIpAdress, quint16 pPort)
     this->aesKey = NULL;
     this->waitedSize = 2;
     this->dao = DAOLayer::getInstance();
+    this->changingPort = false;
 }
 
 TcpClient::~TcpClient()
@@ -51,10 +78,13 @@ void TcpClient::socketConnected()
 
 void TcpClient::socketDisconnected()
 {
-    qDebug() << "Socket disconnected, is closed : " << this->socket->isOpen();
-    this->connected = false;
-    qDebug() << this->socket->state();
-    emit this->connectionClosed();
+    if (!this->changingPort)
+    {
+        qDebug() << "Socket disconnected, is closed : " << this->socket->isOpen();
+        this->connected = false;
+        qDebug() << this->socket->state();
+        emit this->connectionClosed();
+    }
 }
 
 void TcpClient::catchSocketError(QAbstractSocket::SocketError error)
@@ -115,6 +145,9 @@ void TcpClient::receiveDH()
     // Generate the Diffie-Hellman key to exchange AES key
     qlonglong encryptionKey = 0;
     this->diffieSend->CreateSenderEncryptionKey(encryptionKey, B);
+
+    qDebug()<<"B "<<B;
+    qDebug()<<"enc "<<encryptionKey;
 
     // Disconnect for read Diffie-Hellman
     disconnect(this->socket,SIGNAL(readyRead()),0,0);
@@ -183,6 +216,8 @@ void TcpClient::receive()
 
                 this->waitedSize = this->charArrayToShort(buf);
 
+                //qDebug()<<"Received sized "<<this->waitedSize;
+
                 if (this->waitedSize > MAX_BUFF_SIZE)
                 {
                     qDebug() << "Data too big, close the TCP socket";
@@ -201,11 +236,10 @@ void TcpClient::receive()
                             return;
                         }
 
-                        qDebug() << "Old port : " << this->port;
                         // Change the port
                         this->port = this->charArrayToShort(buf);
 
-                        qDebug() << "New port : " << this->port;
+                        this->changingPort = true;
 
                         disconnect(this->socket, SIGNAL(readyRead()), 0, 0);
                         this->socket->close();
@@ -213,6 +247,7 @@ void TcpClient::receive()
                         this->waitedSize = 2;
 
                         QTimer::singleShot(650, this, SLOT(connection()));
+                        this->changingPort = false;
                         return;
                     }
 
@@ -284,6 +319,10 @@ void TcpClient::sendDH()
     longs[0] = g;
     longs[1] = m;
     longs[2] = A;
+
+    qDebug()<<"g "<<g;
+    qDebug()<<"m "<<m;
+    qDebug()<<"A "<<A;
 
     // Put longs in a array of char
     for (int i=0;i<3;i++)

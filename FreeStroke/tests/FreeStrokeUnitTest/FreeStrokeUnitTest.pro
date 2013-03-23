@@ -49,8 +49,6 @@ SOURCES +=  sources/mainTest.cpp \
             sources/xmlconfigtest.cpp \
             sources/controllertest.cpp \
             sources/networkfulltest.cpp \
-            sources/networkclienttest.cpp \
-            sources/networkservertest.cpp \
             sources/networkloggertest.cpp \
             sources/executionmgrtest.cpp \
             sources/utilstest.cpp \
@@ -58,11 +56,13 @@ SOURCES +=  sources/mainTest.cpp \
             sources/recordtest.cpp \
             ../../tools/FakeServer/KControllerCopy/kutils.cpp \
             ../../tools/FakeServer/KControllerCopy/logger.cpp \
-            ../../tools/FakeServer/KControllerCopy/kinect.cpp
+            ../../tools/FakeServer/KControllerCopy/kinect.cpp \
+            sources/networktcptest.cpp \
+            sources/networkudptest.cpp
 #            ../../tools/FakeServer/KControllerCopy/serverutils.cpp \
 #            ../../tools/FakeServer/KControllerCopy/tcpserver.cpp \
 #            ../../tools/FakeServer/KControllerCopy/udpserver.cpp \
-#            ../../tools/FakeServer/KControllerCopy/abstractkserver.cpp \
+#            ../../tools/FakeServer/KControllerCopy/abstractkserver.cpp
 #            ../../tools/FakeServer/sources/fakeserver.cpp
 
 HEADERS +=  includes/test.h \
@@ -85,8 +85,6 @@ HEADERS +=  includes/test.h \
             includes/xmlconfigtest.h \
             includes/controllertest.h \
             includes/networkfulltest.h \
-            includes/networkclienttest.h \
-            includes/networkservertest.h \
             includes/networkloggertest.h \
             includes/executionmgrtest.h \
             includes/utilstest.h \
@@ -94,11 +92,13 @@ HEADERS +=  includes/test.h \
             includes/recordtest.h \
             ../../tools/FakeServer/KControllerCopy/kutils.h \
             ../../tools/FakeServer/KControllerCopy/logger.h \
-            ../../tools/FakeServer/KControllerCopy/kinect.h
+            ../../tools/FakeServer/KControllerCopy/kinect.h \
+            includes/networktcptest.h \
+            includes/networkudptest.h
 #            ../../tools/FakeServer/KControllerCopy/serverutils.h \
 #            ../../tools/FakeServer/KControllerCopy/tcpserver.h \
 #            ../../tools/FakeServer/KControllerCopy/udpserver.h \
-#            ../../tools/FakeServer/KControllerCopy/abstractkserver.h \
+#            ../../tools/FakeServer/KControllerCopy/abstractkserver.h
 #            ../../tools/FakeServer/includes/fakeserver.h
 
 !win32 {

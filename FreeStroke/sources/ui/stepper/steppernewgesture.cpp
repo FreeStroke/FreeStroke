@@ -1,3 +1,29 @@
+/*
+* Projet de fin d'études LastProject de
+* Adrien Broussolle
+* Camille Darcy
+* Guillaume Demurger
+* Sylvain Fay-Chatelard
+* Anthony Fourneau
+* Aurèle Lenfant
+* Adrien Madouasse
+*
+* Copyright (C) 2013 Université Paris-Est Marne-la-Vallée
+*
+* FreeStroke is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+*/
 #include "../../includes/ui/stepper/steppernewgesture.h"
 #include "../../includes/ui/element/label/label.h"
 #include "../../includes/daolayer/daolayer.h"
@@ -88,6 +114,9 @@ void StepperNewGesture::stepDependantAction(int offset)
     }
     switch(this->stepActions->at(this->currentStep + offset))
     {
+    case StepperNewGesture::First :
+        qDebug() << "First";
+        break;
     case StepperNewGesture::StartTimer :
     {
         qDebug() << "StartTimer";
@@ -122,7 +151,7 @@ void StepperNewGesture::stepDependantAction(int offset)
         break;
     }
     case StepperNewGesture::Close :
-         qDebug() << "Close";
+        qDebug() << "Close";
         disconnect(this->executionManager, SIGNAL(trainingEnded()), 0, 0);
         disconnect(this->executionManager, SIGNAL(gestureRecorded(Gesture*)), 0, 0);
         disconnect(this->executionManager, SIGNAL(gestureConflict(Gesture*)), 0, 0);

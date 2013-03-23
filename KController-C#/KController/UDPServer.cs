@@ -1,6 +1,34 @@
-ï»¿/*!
+/*
+ * Projet de fin d'études LastProject de
+ * Adrien Broussolle
+ * Camille Darcy
+ * Guillaume Demurger
+ * Sylvain Fay-Chatelard
+ * Anthony Fourneau
+ * Aurèle Lenfant
+ * Adrien Madouasse
+ *
+ * Copyright (C) 2013 Université Paris-Est Marne-la-Vallée 
+ *
+ * FreeStroke is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+ *
+ */
+
+/*!
  * \file UDPServer.cs
- * \author Sylvain Fay-ChÃ¢telard & Adrien Madouasse
+ * \author Sylvain Fay-Châtelard & Adrien Madouasse
  * \brief UDP communication with a FreeStroke to answer to the discover request
  * \date 2013-03-07
  */
@@ -10,6 +38,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace KController
 {
@@ -98,9 +127,13 @@ namespace KController
          */
         public void start()
         {
-            // Run the thread
-            thread = new Thread(this.private_start);
-            thread.Start();
+            if (thread == null && !run)
+            {
+                // Run the thread
+                thread = new Thread(this.private_start);
+                thread.Name = "UDP Thread";
+                thread.Start();
+            }
         }
 
         /*!
@@ -119,35 +152,42 @@ namespace KController
                 socket.JoinMulticastGroup(multicastAddress);
                 System.Net.IPEndPoint from = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0);
 
-                // Listening
-                while (run)
+                try
                 {
-                    // Read
-                    byte[] data = socket.Receive(ref from);
-                    if (data.Length != 1 && data[0] != 0)
+                    // Listening
+                    while (run)
                     {
-                        continue;
-                    }
+                        // Read
+                        byte[] data = socket.Receive(ref from);
+                        if (data.Length != 1 && data[0] != 0)
+                        {
+                            continue;
+                        }
 
-                    // Prepare the response
-                    byte[] response = new byte[3 + name.Length + 1];
-                    response[0] = 1;
-                    response[1] = (byte)(tcpPort >> 8);
-                    response[2] = (byte)tcpPort;
-                    for (int i = 0; i < name.Length; i++)
-                    {
-                        response[i + 3] = (byte)name.ToCharArray()[i];
+                        // Prepare the response
+                        byte[] response = new byte[3 + name.Length + 1];
+                        response[0] = 1;
+                        response[1] = (byte)(tcpPort >> 8);
+                        response[2] = (byte)tcpPort;
+                        for (int i = 0; i < name.Length; i++)
+                        {
+                            response[i + 3] = (byte)name.ToCharArray()[i];
+                        }
+                        response[3 + name.Length] = 0;
+                        socket.Send(response, 3 + name.Length  + 1, from);
                     }
-                    response[3 + name.Length] = 0;
-                    socket.Send(response, 3 + name.Length  + 1, from);
+                }
+                catch (System.Net.Sockets.SocketException e)
+                {
+                    Console.WriteLine("UDP : System.Net.Sockets.SocketException " + e.Message);
+                    // Stop the UDP server
+                    stop();
                 }
             }
             catch (System.Net.Sockets.SocketException e)
             {
-                Console.WriteLine("UDP : System.Net.Sockets.SocketException " + e.Message);
-
-                // Stop the UDP server
-                stop();
+                MessageBox.Show("UDP port is already used");
+                Application.Exit();
             }
         }
 
@@ -159,14 +199,24 @@ namespace KController
             try
             {
                 run = false;
-                if (multicastAddress == null)
+                if (socket != null)
                 {
-                    socket.Close();
-                    return;
+                    if (multicastAddress == null)
+                    {
+                        socket.Close();
+                    }
+                    else
+                    {
+                        socket.DropMulticastGroup(multicastAddress);
+                        socket.Close();
+                    }
+                    socket = null;
                 }
-                socket.DropMulticastGroup(multicastAddress);
-                socket.Close();
-                thread.Abort();
+                if (thread != null)
+                {
+                    thread.Abort();
+                    thread = null;
+                }
             }
             catch (System.ObjectDisposedException e)
             {
