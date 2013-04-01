@@ -223,7 +223,7 @@ void KeyListener::paintEvent(QPaintEvent *e)
 
     if (this->hasFocus())
     {
-        p.setBrush(QColor(0, 180, 0, 0.4 * 255));
+        p.setBrush(QColor(131, 131, 131, 0.4 * 255));
     }
     else
     {
