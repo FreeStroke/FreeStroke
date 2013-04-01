@@ -1,6 +1,10 @@
 
 .DS_Store
 Makefile
+MakeFile.Debug
+MakeFile.Release
+object_script.FreeStroke.Debug
+object_script.FreeStroke.Release
 *.o
 *.pro.user
 moc_*.cpp
