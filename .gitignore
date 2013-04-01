@@ -6,3 +6,4 @@ Makefile
 moc_*.cpp
 qrc_resources.cpp
 FreeStroke.app
+*.exe
