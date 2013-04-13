@@ -5,7 +5,7 @@ MakeFile.Debug
 MakeFile.Release
 object_script.FreeStroke.Debug
 object_script.FreeStroke.Release
-*.o
+*.o*
 *.pro.user
 moc_*.cpp
 qrc_resources.cpp
