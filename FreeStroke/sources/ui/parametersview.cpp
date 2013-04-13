@@ -345,7 +345,9 @@ void ParametersView::launchTutorial()
     stepper = NULL;
     if(this->isFirstLaunch && code == Dialog::Rejected)
     {
+#ifdef QT_NO_DEBUG
         exit(0);
+#endif
     }
     if (this->isFirstLaunch && code == Dialog::Accepted)
     {
