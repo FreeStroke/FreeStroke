@@ -260,11 +260,11 @@ void Cell::paintEvent(QPaintEvent * e)
     QPoint pos = mapToParent(this->parentWidget()->pos());
     if (pos.y() < 0 || pos.y() > this->parentWidget()->parentWidget()->height() - this->height())
     {
-        this->glView->hide();
+        //this->glView->hide();
     }
     else
     {
-        this->glView->show();
+        //ethis->glView->show();
         p.setBrush(QColor("#b6bbbf"));
         p.drawRoundedRect(this->glView->pos().x()-1, this->glView->pos().y()-1, this->glView->size().width()+2, this->glView->size().height()+2, 4, 4);
     }
