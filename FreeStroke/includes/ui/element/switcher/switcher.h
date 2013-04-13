@@ -33,8 +33,6 @@
 #ifndef SWITCHER_H
 #define SWITCHER_H
 
-#include <QAbstractButton>
-
 #include "../element.h"
 #include "../../../ui/element/label/label.h"
 

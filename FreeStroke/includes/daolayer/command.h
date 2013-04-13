@@ -34,10 +34,9 @@
  * \date 2013-02-12
  */
 
+#include <QtCore>
+
 #include "commandtype.h"
-#include <QtCore/QString>
-#include <QtCore/QObject>
-#include <QtCore/QHash>
 
 /*!
  * \class Command

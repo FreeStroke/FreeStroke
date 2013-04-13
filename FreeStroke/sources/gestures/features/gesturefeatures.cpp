@@ -31,7 +31,6 @@
 
 #include "../../includes/common/math.h"
 
-#include <QtCore/QDebug>
 /**
  * -----------------------------------------
  *

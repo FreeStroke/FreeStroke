@@ -26,9 +26,6 @@
 */
 #include "../../includes/daolayer/historyrecord.h"
 
-#include <QtCore/QObject>
-#include <QtCore/QDate>
-
 HistoryRecord::HistoryRecord(Record *pRecord)
 {
     this->recordExecuted = pRecord;

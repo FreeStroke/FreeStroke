@@ -34,12 +34,6 @@
 #include "../../includes/xml/xmlconf.h"
 #include "../../includes/xml/xml.h"
 
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QMovie>
-#include <QtGui/QColor>
-#include <QtCore/QDebug>
-
 StepsNewGesture::StepsNewGesture(ExecutionManager *pExecutionManager, int pNumberOfGesture, QWidget *parent)
 {
     int labelFontSize = 23;

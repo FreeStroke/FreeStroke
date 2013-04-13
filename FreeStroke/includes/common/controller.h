@@ -33,17 +33,14 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <QtCore/QDebug>
-#include <QtCore/QObject>
+#include <QtCore>
 
 /*!
  * \class Controller
  * \brief The Controller class contains information of a controller
  */
-class Controller : public QObject
+class Controller
 {
-    Q_OBJECT
-
 public :
     /*!
      * \brief The constructor, initialize attributes

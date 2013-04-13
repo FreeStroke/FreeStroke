@@ -29,11 +29,6 @@
 
 #include "../../includes/ui/element/button/playbuttonelement.h"
 
-#include <QtGui/QWidget>
-#include <QtGui/QLabel>
-#include <QtGui/QAbstractButton>
-#include <QtGui/QMovie>
-
 /*!
  * \brief Encapsulate
  */

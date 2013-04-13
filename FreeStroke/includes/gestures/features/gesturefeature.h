@@ -35,8 +35,6 @@
 
 #include "../../includes/gestures/data/inputgesture.h"
 
-#include <QtCore/QDebug>
-
 /*!
  * \class GestureFeature
  * \brief Abstract class for gesture-oriented features

@@ -27,10 +27,6 @@
 #include "../../includes/ui/cell/cell.h"
 #include "../../includes/common/utils.h"
 
-#include <QtGui/QPainter>
-
-#include <QtCore/QDebug>
-
 #include "../../includes/ui/list/list.h"
 
 #include "../../includes/application.h"

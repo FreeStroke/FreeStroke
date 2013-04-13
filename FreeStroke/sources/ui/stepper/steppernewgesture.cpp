@@ -28,11 +28,6 @@
 #include "../../includes/ui/element/label/label.h"
 #include "../../includes/daolayer/daolayer.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QTimer>
-
-
-
 StepperNewGesture::StepperNewGesture(ExecutionManager *pExecutionManager, CommandChooser* pCommandChooser, int pNumberOfGesture, QWidget* parent) : Stepper(parent)
 {
     this->executionManager = pExecutionManager;

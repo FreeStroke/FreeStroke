@@ -27,10 +27,6 @@
 #include "../../includes/ui/video/videocomponent.h"
 #include "../../includes/common/utils.h"
 
-#include <QtGui/QPixmap>
-#include <QtGui/QIcon>
-#include <QtCore/QDebug>
-
 VideoComponent::VideoComponent(const QString &pFileName, QWidget *parent) :
     QLabel(parent)
 {

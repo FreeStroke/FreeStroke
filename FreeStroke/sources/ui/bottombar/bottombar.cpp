@@ -27,9 +27,6 @@
 
 #include "../../includes/ui/bottombar/bottombar.h"
 
-#include <QtGui/QPainter>
-#include <QtGui/QHBoxLayout>
-
 BottomBar::BottomBar(QWidget *parent) : QWidget(parent)
 {
     this->setFixedHeight(52);

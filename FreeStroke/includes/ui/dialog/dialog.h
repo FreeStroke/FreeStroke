@@ -34,16 +34,6 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
-#include <QtCore/QObject>
-#include <QtGui/QDialog>
-#include <QtGui/QPainter>
-#include <QtGui/QWidget>
-#include <QtGui/QPushButton>
-#include <QtCore/QHash>
-#include <QtGui/QLabel>
-#include <QtCore/QList>
-#include <QtGui/QGraphicsDropShadowEffect>
-
 #include "dialogbutton.h"
 
 #include "../../includes/ui/element/label/label.h"

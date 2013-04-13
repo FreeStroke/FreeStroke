@@ -40,9 +40,6 @@
 #include "../../includes/gestures/executionmanager.h"
 #include "../../includes/ui/commandchooser/commandchooser.h"
 
-#include <QtCore/QList>
-#include <QtCore/QTime>
-
 /*!
  * \brief The Stepper class is a Stepper used for adding a new Gesture.
  */

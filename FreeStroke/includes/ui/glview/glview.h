@@ -33,9 +33,6 @@
 #ifndef GLVIEW_H
 #define GLVIEW_H
 
-#include <QtGui/QMainWindow>
-#include <QtGui/QMouseEvent>
-
 #include "openglview.h"
 
 #include "../../common/gesture.h"

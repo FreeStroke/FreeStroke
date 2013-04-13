@@ -30,6 +30,7 @@
 
 #import <CoreServices/CoreServices.h>
 #import <Carbon/Carbon.h>
+#import <AppKit/AppKit.h>
 
 CGKeyCode keyCodeForCharWithLayout(const short c, const UCKeyboardLayout *uchrHeader);
 CGKeyCode keyCodeForChar(const short c);

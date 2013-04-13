@@ -35,8 +35,6 @@
 #ifndef STEPPER_H
 #define STEPPER_H
 
-#include <QtGui/QWidget>
-
 #include "../dialog/dialog.h"
 
 /*!

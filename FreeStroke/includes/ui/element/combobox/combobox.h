@@ -34,8 +34,6 @@
 #ifndef COMBOBOX_H
 #define COMBOBOX_H
 
-#include <QtGui/QComboBox>
-
 #include "../element.h"
 
 /*!

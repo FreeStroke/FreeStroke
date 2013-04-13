@@ -27,12 +27,6 @@
 #include "../../includes/ui/dialog/dialog.h"
 #include "../../includes/common/utils.h"
 
-#include <QtGui/QLayout>
-#include <QtGui/QGraphicsBlurEffect>
-#include <QtGui/QMouseEvent>
-
-#include <QtCore/QDebug>
-
 /* Dialog */
 
 QPixmap * Dialog::pixmapInfos = 0;

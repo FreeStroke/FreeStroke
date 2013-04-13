@@ -34,7 +34,7 @@
 #ifndef PARAMETERSVIEW_H
 #define PARAMETERSVIEW_H
 
-#include <QtGui/QWidget>
+#include <QtWidgets>
 
 /*!
  * \brief The ParametersView class hold all the component of the parameters view of the application. It display the

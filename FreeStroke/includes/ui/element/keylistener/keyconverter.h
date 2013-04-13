@@ -35,13 +35,6 @@
 #ifndef KEYCONVERTER_H
 #define KEYCONVERTER_H
 
-#include <QtCore/QDebug>
-#include <QtCore/QString>
-#include <QtCore/qnamespace.h>
-#include <QtGui/QKeySequence>
-#include <QtGui/QKeyEvent>
-#include <QtCore/QStringList>
-
 #ifdef Q_OS_DARWIN
 #include "../../../others/mac/mac.h"
 #endif

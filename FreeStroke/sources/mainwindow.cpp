@@ -31,12 +31,6 @@
 #include "../../includes/others/mac/mac.h"
 #endif
 
-#include <QtCore/QDebug>
-
-#include <QtGui/QApplication>
-#include <QtCore/QCoreApplication>
-#include <QtGui/QVBoxLayout>
-
 #include "../../includes/application.h"
 #include "../../includes/network/communication.h"
 #include "../../includes/network/udpclient.h"

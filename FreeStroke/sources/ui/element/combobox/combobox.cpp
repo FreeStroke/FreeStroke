@@ -27,9 +27,6 @@
 #include "../../../../includes/ui/element/combobox/combobox.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QPainter>
-#include <QtDebug>
-
 ComboBox::ComboBox(QWidget * w) : QComboBox(w), Element(this)
 {
     QFont f = Utils::getFont();

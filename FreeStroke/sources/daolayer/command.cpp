@@ -27,8 +27,6 @@
 #include "../../includes/daolayer/command.h"
 #include "../../includes/ui/element/keylistener/keyconverter.h"
 
-#include <QProcess>
-#include <QtCore>
 #if defined(Q_OS_DARWIN)
 #include "../../includes/others/mac/mac.h"
 #elif defined(Q_OS_UNIX)

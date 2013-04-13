@@ -42,9 +42,6 @@
 
 #include "../../includes/ui/dialog/dialog.h"
 
-#include <QtCore/QCoreApplication>
-#include <QtGui/QVBoxLayout>
-
 ExecutionView::ExecutionView(QWidget *parent) : QWidget(parent)
 {
     this->gestureListView = new GestureListView(this);

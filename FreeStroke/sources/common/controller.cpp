@@ -32,7 +32,6 @@
  * \brief Description of a controller
  * \date 2013-02-13
  */
-#include <QtCore/QString>
 
 Controller::Controller(QString pIpAddr, unsigned short pPort, QString pName)
 {

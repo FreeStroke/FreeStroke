@@ -33,8 +33,6 @@
  * \brief Complete communication between FreeStroke and a controller
  * \date 2013-02-14
  */
-#include <QtCore/QList>
-#include <QtCore/QThread>
 
 #include "../../includes/common/controller.h"
 #include "../../includes/network/tcpclient.h"

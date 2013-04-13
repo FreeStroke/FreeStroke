@@ -34,9 +34,6 @@
 #ifndef TOPBAR_H
 #define TOPBAR_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QButtonGroup>
-
 #include "../element/button/menubuttonelement.h"
 /*!
  * \brief The TopBar class is a QWidget with no margin and no spacing which is made to hold MenuButtonElement.

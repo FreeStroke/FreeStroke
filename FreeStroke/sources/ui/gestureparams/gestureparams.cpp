@@ -26,9 +26,6 @@
 */
 #include "../../includes/ui/gestureparams/gestureparams.h"
 
-#include <QtGui/QPainter>
-#include <QtGui/QHBoxLayout>
-
 GestureParams::GestureParams(QWidget *parent) : QWidget(parent)
 {
     this->setFixedHeight(35);

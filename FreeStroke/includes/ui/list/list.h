@@ -33,9 +33,6 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QScrollArea>
-
 #include "../cell/cell.h"
 
 /*!

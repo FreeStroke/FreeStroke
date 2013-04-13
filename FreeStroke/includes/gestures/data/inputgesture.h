@@ -36,8 +36,6 @@
 #include "rawjointstate.h"
 #include "../../common/gesture.h"
 
-#include <QtCore/QList>
-
 /*! \class InputGesture
    * \brief Represents a gesture used to compute recognition and recording
    * Contains functions to build a gesture and to use it

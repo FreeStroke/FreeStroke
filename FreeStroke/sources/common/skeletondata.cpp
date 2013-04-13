@@ -26,10 +26,6 @@
 */
 #include "../../includes/common/skeletondata.h"
 
-#include <QtCore/QStringList>
-
-#include <QtCore/QDebug>
-
 SkeletonData::SkeletonData(QList<Vector3> *pJointures, unsigned long long pTimestamp)
 {
     this->timestamp = pTimestamp;

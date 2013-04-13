@@ -36,8 +36,6 @@
 #include "algorithm/logisticregressionalgorithm.h"
 #include "segmenter.h"
 
-#include <QtCore/QThread>
-
 /*!
  * \enum Role
  * \brief Defines the process to launch in the ExecutionManager.

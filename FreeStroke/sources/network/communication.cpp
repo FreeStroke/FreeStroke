@@ -32,9 +32,6 @@
  * \brief Communication : UDP discover and secure TCP connection
  * \date 2013-02-13
  */
-#include <QtCore/QDebug>
-#include <QtCore/QByteArray>
-#include <QtCore/QTimer>
 
 #include "../../includes/network/udpclient.h"
 #include "../../includes/network/tcpclient.h"

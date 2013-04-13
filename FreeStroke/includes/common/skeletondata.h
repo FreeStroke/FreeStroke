@@ -33,7 +33,7 @@
 #ifndef SKELETONDATA_H
 #define SKELETONDATA_H
 
-#include <QtCore/QList>
+#include <QtCore>
 
 #include "vector3.h"
 

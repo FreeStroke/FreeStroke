@@ -33,8 +33,7 @@
 #ifndef OPENGLVIEW_H
 #define OPENGLVIEW_H
 
-#include <QtOpenGL/QGLWidget>
-#include <QtOpenGL/QtOpenGL>
+#include <QtOpenGL>
 
 #include <math.h>
 

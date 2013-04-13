@@ -27,10 +27,7 @@
 #ifndef NOTIFICATION_H
 #define NOTIFICATION_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QLabel>
-#include <QtGui/QMovie>
-#include <QtCore/QTimer>
+#include <QtWidgets>
 
 class Notification : public QWidget
 {

@@ -33,9 +33,7 @@
 #ifndef SCROLLBAR_H
 #define SCROLLBAR_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QPainter>
-#include <QtGui/QScrollBar>
+#include <QtWidgets>
 
 /*!
  * \brief The ScrollBar class is a QScrollBar with a custom skin

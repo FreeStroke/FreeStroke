@@ -27,9 +27,6 @@
 
 #include "../../includes/xml/xml.h"
 
-#include <QtCore/QIODevice>
-
-
 bool  Xml::exportConfig(XmlConf * pXmlConf,QString pFilename)
 {
     file.setFileName(pFilename);

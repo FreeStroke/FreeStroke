@@ -27,8 +27,6 @@
 #include "../../../../includes/ui/element/button/playbuttonelement.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QPainter>
-
 PlayButtonElement::PlayButtonElement(QWidget * parent) : QAbstractButton(parent), Element(this)
 {
     this->setFixedSize(QSize(600,400));

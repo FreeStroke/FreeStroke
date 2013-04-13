@@ -33,9 +33,6 @@
 #ifndef BOTTOMBARSEPARATOR_H
 #define BOTTOMBARSEPARATOR_H
 
-
-#include <QtGui/QWidget>
-
 #include "../element/button/buttonelement.h"
 
 /*!

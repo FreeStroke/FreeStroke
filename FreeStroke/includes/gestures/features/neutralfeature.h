@@ -33,8 +33,6 @@
 #ifndef NEUTRALFEATURE_H
 #define NEUTRALFEATURE_H
 
-#include <QtCore/QList>
-
 #include "../data/rawjointstate.h"
 
 #include "../../common/vector3.h"

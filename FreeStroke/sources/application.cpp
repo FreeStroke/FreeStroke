@@ -24,10 +24,6 @@
 * License along with this library; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
 */
-#include <QtCore/QProcess>
-#include <QtCore/QEvent>
-#include <QtCore/QDebug>
-#include <QtGui/QKeyEvent>
 
 #include "../../includes/application.h"
 #include "../../includes/ui/element/keylistener/keylistener.h"
@@ -45,12 +41,12 @@ void Application::restart()
     QProcess	mProcess;
     QString str = "";
 #if defined(Q_OS_WIN32)
-    str = QString("\"%1\"").arg(QApplication::argv()[0]);
+    str = QString("\"%1\"").arg(QApplication::arguments().at(0);
 #elif defined(Q_OS_DARWIN)
-    str = QString(QApplication::argv()[0]);
+    str = QString(QApplication::arguments().at(0));
     str.replace(" ","\\ ");
 #else
-    str = QString(QApplication::argv()[0]);
+    str = QString(QApplication::arguments().at(0));
 #endif
     mProcess.startDetached(str);
     QApplication::quit();

@@ -28,8 +28,6 @@
 
 #include <math.h>
 
-#include <QtCore/QDebug>
-
 float Math::sigmoid(float pInput)
 {
     return 1.0f / (1.0f + expf(-pInput));

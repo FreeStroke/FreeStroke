@@ -25,9 +25,6 @@
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
 */
 #include "../../includes/ui/stepper/stepper.h"
-#include <QtGui/QDesktopWidget>
-#include <QtCore/QPropertyAnimation>
-#include <QtCore/QDebug>
 
 Step::Step(QString pTitle, bool pNextVisible, bool pPreviousVisible, bool pCancelVisible, QWidget *pWidget)
 {

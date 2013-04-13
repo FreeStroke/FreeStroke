@@ -34,9 +34,6 @@
 #include "../../includes/xml/xml.h"
 #include "../../includes/xml/xmlconf.h"
 
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QVBoxLayout>
-
 StepsTutorial::StepsTutorial(QWidget *pParent, bool isFirstLaunch)
 {
     int labelFontSize = 16;

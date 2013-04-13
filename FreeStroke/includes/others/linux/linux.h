@@ -33,9 +33,6 @@
 #ifndef LINUX_H
 #define LINUX_H
 
-#include <QtCore/QObject>
-#include <QtGui/QWidget>
-
 #include <X11/Xlib.h>
 #include <X11/Xresource.h>
 #include <X11/keysym.h>

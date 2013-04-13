@@ -27,11 +27,6 @@
 #include "../../../../includes/ui/element/textfield/textfield.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtCore/QFileInfo>
-#include <QtCore/QUrl>
-#include <QtGui/QPainter>
-#include <QtGui/QtEvents>
-
 TextField::TextField(QWidget *parent) : QLineEdit(parent), Element(this)
 {
     /* Set font */

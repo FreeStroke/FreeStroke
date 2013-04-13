@@ -34,8 +34,6 @@
 #ifndef GESTUREPARAMS_H
 #define GESTUREPARAMS_H
 
-#include <QtGui/QWidget>
-
 #include "../element/element.h"
 
 /*!

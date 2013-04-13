@@ -33,17 +33,14 @@
 #ifndef STEPSNEWGESTURE_H
 #define STEPSNEWGESTURE_H
 
-#include <QtGui/QWidget>
-#include <QtCore/QList>
+#include "stepper.h"
+#include "steppernewgesture.h"
 
 #include "../../includes/daolayer/record.h"
 #include "../../includes/common/gesture.h"
 #include "../../includes/gestures/executionmanager.h"
-#include "steppernewgesture.h"
 #include "../../includes/ui/glview/glview.h"
 #include "../../includes/ui/commandchooser/commandchooser.h"
-
-#include "stepper.h"
 
 /*!
  * \brief The StepsNewGesture class contains all the Step to add a new Gesture with the StepperNewGesture

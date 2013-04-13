@@ -25,12 +25,6 @@
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
 */
 #include "../../includes/ui/list/list.h"
-#include <QtGui/QKeyEvent>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QResizeEvent>
-#include <QtGui/QPainter>
-
-#include <QtCore/QDebug>
 
 #include "../../includes/ui/scrollbar/scrollbar.h"
 #include "../../includes/application.h"

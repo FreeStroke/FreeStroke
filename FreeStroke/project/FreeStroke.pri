@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT          += core gui opengl network xml
+QT  += core widgets opengl network xml
 
 TARGET      = FreeStroke
 TEMPLATE    = app
@@ -79,7 +79,8 @@ HEADERS     +=  ../../includes/application.h \
                 ../../includes/xml/xml.h \
                 ../../includes/xml/xmlconf.h
 
-SOURCES     +=  ../../sources/application.cpp \
+SOURCES     +=  ../../sources/main.cpp \
+                ../../sources/application.cpp \
                 ../../sources/common/controller.cpp \
                 ../../sources/common/math.cpp \
                 ../../sources/common/gesture.cpp \
@@ -98,7 +99,6 @@ SOURCES     +=  ../../sources/application.cpp \
                 ../../sources/gestures/features/gesturefeatures.cpp \
                 ../../sources/gestures/features/neutralfeature.cpp \
                 ../../sources/gestures/features/allfeatures.cpp \
-                ../../sources/main.cpp \
                 ../../sources/mainwindow.cpp \
                 ../../sources/network/aes.cpp \
                 ../../sources/network/communication.cpp \

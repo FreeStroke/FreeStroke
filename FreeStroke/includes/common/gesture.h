@@ -35,8 +35,6 @@
 
 #include "skeletondata.h"
 
-#include <QtCore/QString>
-
 /*!
  * \brief Represents a basic gesture object
  * A gesture is composed by some skeleton frames and can be built from a file or a list of frames

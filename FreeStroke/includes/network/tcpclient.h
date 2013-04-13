@@ -33,7 +33,8 @@
  * \brief TCP communication with a controller
  * \date 2013-02-13
  */
-#include <QtNetwork/QTcpSocket>
+
+#include <QtNetwork>
 
 #include "../../includes/daolayer/daolayer.h"
 #include "../../includes/network/aes.h"

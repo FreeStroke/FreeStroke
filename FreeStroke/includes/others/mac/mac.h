@@ -33,8 +33,8 @@
 #ifndef MAC_H
 #define MAC_H
 
-#include <QtCore/QObject>
-#include <QtGui/QWidget>
+#include <QtCore>
+#include <QtWidgets>
 
 class Mac : public QObject
 {

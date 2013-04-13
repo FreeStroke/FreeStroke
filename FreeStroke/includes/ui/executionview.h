@@ -33,8 +33,6 @@
 #ifndef EXECUTIONVIEW_H
 #define EXECUTIONVIEW_H
 
-#include <QtGui/QWidget>
-
 #include "gesturelistview/gesturelistview.h"
 #include "../../includes/ui/element/label/label.h"
 #include "../../includes/ui/element/button/buttonelement.h"

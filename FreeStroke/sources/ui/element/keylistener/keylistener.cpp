@@ -27,12 +27,6 @@
 #include "../../../../includes/ui/element/keylistener/keylistener.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QPainter>
-#include <QtGui/QtEvents>
-
-#include <QtCore/QDebug>
-
 #include "../../includes/ui/element/keylistener/keyconverter.h"
 
 Key::Key(QString pKey, QWidget *parent) : QWidget(parent)

@@ -36,10 +36,6 @@
 #include "data/inputgesture.h"
 #include "data/rawjointstate.h"
 
-#include <QtCore/QObject>
-#include <QtCore/QQueue>
-#include <QtCore/QList>
-
 /*!
  * \enum SegmenterRole
  * \brief Defines the process to launch in the ExecutionManager.

@@ -36,8 +36,6 @@
 #ifndef COMMANDCHOOSER_H
 #define COMMANDCHOOSER_H
 
-#include <QtGui/QWidget>
-
 #include "../../includes/ui/element/combobox/combobox.h"
 #include "../../includes/ui/element/textfield/textfield.h"
 #include "../../includes/ui/element/keylistener/keylistener.h"

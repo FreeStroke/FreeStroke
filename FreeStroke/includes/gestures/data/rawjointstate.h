@@ -36,10 +36,6 @@
 #include "../../common/vector3.h"
 #include "../../common/skeletondata.h"
 
-#include <QString>
-#include <QHash>
-#include <QList>
-
 /*! \class RawJointState
    * \brief Represents state of joints in a skeleton
    * Contains functions to build a skeleton from an input string, compute relative angles and joints

@@ -34,8 +34,6 @@
 #ifndef MENUBUTTONELEMENT_H
 #define MENUBUTTONELEMENT_H
 
-#include <QtGui/QAbstractButton>
-
 #include "../element.h"
 
 /*!

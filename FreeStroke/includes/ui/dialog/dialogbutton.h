@@ -33,19 +33,7 @@
 #ifndef CUSTOMFORMS_H
 #define CUSTOMFORMS_H
 
-#include <QtCore/QObject>
-#include <QtGui/QWidget>
-#include <QtGui/QLineEdit>
-#include <QtGui/QComboBox>
-#include <QtGui/QGroupBox>
-#include <QtGui/QSpinBox>
-#include <QtGui/QPushButton>
-#include <QtGui/QPainter>
-#include <QtGui/QScrollArea>
-#include <QtGui/QScrollBar>
-#include <QtGui/QMessageBox>
-#include <QtGui/QDialog>
-#include <QtGui/QWheelEvent>
+#include <QtWidgets>
 
 /*!
  * \brief The DialogButton class represents a special QPushButton used by Dialog

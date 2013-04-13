@@ -27,9 +27,6 @@
 #ifndef NOTIFICATIONS_H
 #define NOTIFICATIONS_H
 
-#include <QtGui/QWidget>
-#include <QtGui/QPainter>
-
 #include "notification.h"
 
 class Notifications : public QWidget

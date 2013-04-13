@@ -32,9 +32,6 @@
  * \brief UDP communication with a controller
  * \date 2013-02-12
  */
-#include <QtCore/QDebug>
-#include <QtNetwork/QNetworkInterface>
-#include <QtNetwork/QUdpSocket>
 
 #include "../../includes/common/utils.h"
 #include "../../includes/common/controller.h"

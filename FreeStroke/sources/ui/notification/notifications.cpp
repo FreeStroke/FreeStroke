@@ -27,10 +27,6 @@
 #include "../../includes/ui/notification/notifications.h"
 #include "../../includes/mainwindow.h"
 
-#include <QtCore/QDebug>
-#include <QtCore/QPropertyAnimation>
-#include <QtGui/QSystemTrayIcon>
-
 #ifdef Q_OS_DARWIN
 #include "../../includes/others/mac/mac.h"
 #endif

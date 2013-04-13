@@ -33,8 +33,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <QtCore/QObject>
-#include <QtGui/QFont>
+#include <QtCore>
+#include <QtWidgets> // For including QFont
 
 /*!
  * \brief Utiliy class for freestroke application

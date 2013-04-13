@@ -34,8 +34,6 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <QtGui/QApplication>
-#include <QtGui/QKeyEvent>
 #include "mainwindow.h"
 
 /*!

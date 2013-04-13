@@ -27,11 +27,6 @@
 #include "../../../../includes/ui/element/label/label.h"
 #include "../../../../includes/common/utils.h"
 
-
-#include <QtGui/QPainter>
-#include <QtCore/QDebug>
-
-
 Label::Label(QString pText, QWidget *parent) : QLabel(pText, parent), Element(this)
 {
     this->backgroundColor = QColor(255,255,255,0);

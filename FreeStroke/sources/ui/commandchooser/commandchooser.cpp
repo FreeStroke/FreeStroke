@@ -26,8 +26,6 @@
 */
 #include "../../includes/ui/commandchooser/commandchooser.h"
 
-#include <QtGui/QFileDialog>
-
 CommandChooser::CommandChooser(QWidget* pParent)
 {
     this->btnPathChooser = new ButtonElement(pParent);

@@ -26,11 +26,6 @@
 */
 #include "../../includes/ui/glview/openglview.h"
 
-#include <QtCore/QTimer>
-#include <QtGui/QKeyEvent>
-
-#include <QtCore/QDebug>
-
 OpenGlView::OpenGlView(int pFramesPerSecond, QWidget *parent) : QGLWidget(parent)
 {
     if(pFramesPerSecond == 0)

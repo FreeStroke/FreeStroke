@@ -27,10 +27,6 @@
 #include "../../../../includes/ui/element/button/buttonelement.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QPainter>
-
-#include <QtCore/QDebug>
-
 ButtonElement::ButtonElement(QWidget *parent) : QAbstractButton(parent), Element(this)
 {
     QFont f = Utils::getFont();

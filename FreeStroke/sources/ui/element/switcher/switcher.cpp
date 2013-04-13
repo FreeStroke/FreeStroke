@@ -27,14 +27,6 @@
 #include "../../../../includes/ui/element/switcher/switcher.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QWidget>
-#include <QtGui/QAbstractButton>
-#include <QtGui/QPainter>
-#include <QtGui/QMouseEvent>
-#include <QtCore/QDebug>
-#include <QtGui/QApplication>
-#include <QtCore/QPropertyAnimation>
-
 Cursor::Cursor(QWidget * parent) : QWidget(parent)
 {
     this->setFixedSize(parent->minimumHeight()-1, parent->minimumHeight()-1);

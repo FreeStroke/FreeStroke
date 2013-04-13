@@ -41,11 +41,6 @@
 
 #include "../../includes/xml/xml.h"
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QString>
-#include <QtGui/QVBoxLayout>
-
-
 #include "../../includes/others/mac/mac.h"
 
 ListView::ListView(QWidget *parent) : QWidget(parent)

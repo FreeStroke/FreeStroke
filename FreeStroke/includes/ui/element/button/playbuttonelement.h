@@ -33,8 +33,6 @@
 #ifndef PLAYBUTTONELEMENT_H
 #define PLAYBUTTONELEMENT_H
 
-#include <QtGui/QAbstractButton>
-
 #include "../element.h"
 
 /*!

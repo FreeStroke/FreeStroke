@@ -33,8 +33,6 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include <QtGui/QAbstractButton>
-
 #include "../element/label/label.h"
 #include "../glview/glview.h"
 #include "../../daolayer/historyrecord.h"

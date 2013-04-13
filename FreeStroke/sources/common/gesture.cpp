@@ -26,10 +26,6 @@
 */
 #include "../../includes/common/gesture.h"
 
-#include <QtCore/QFile>
-
-#include <QtCore/QDebug>
-
 Gesture::Gesture(QList<SkeletonData*> *pFrames)
 {
     this->frames = pFrames;
@@ -54,7 +50,7 @@ Gesture* Gesture::fromFile(QString filename)
     int size = -1;
     while((size = f.readLine(buffer, 1024)) > 0)
     {
-        frames->append(SkeletonData::fromLine(QString::fromAscii(buffer, size)));
+        frames->append(SkeletonData::fromLine(QString::fromLatin1(buffer, size)));
     }
 
     Gesture *gesture = new Gesture(frames);

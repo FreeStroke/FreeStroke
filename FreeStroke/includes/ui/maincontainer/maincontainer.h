@@ -33,9 +33,7 @@
 #ifndef MAINCONTAINER_H
 #define MAINCONTAINER_H
 
-#include <QtGui/QWidget>
-#include <QtCore/QList>
-#include <QtCore/QString>
+#include <QtWidgets>
 
 /*!
  * \brief The MainContainer class is the QWidget contening all the view of the application

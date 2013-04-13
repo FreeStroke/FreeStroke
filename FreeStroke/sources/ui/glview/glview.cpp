@@ -26,10 +26,6 @@
 */
 #include "../../includes/ui/glview/glview.h"
 
-#include <QtCore/QTimer>
-#include <QtCore/QDebug>
-#include <QDesktopServices>
-
 GlView::GlView(QWidget *parent, GLViewType pType) : OpenGlView(25, parent)
 {
     this->type = pType;

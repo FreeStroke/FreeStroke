@@ -33,7 +33,7 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
-#include <QtGui/QWidget>
+#include <QtWidgets>
 
 /*!
  * \brief The Element class is the super class of custom basic UI elements (buttons, labels, textfield ...)

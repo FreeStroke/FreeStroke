@@ -33,9 +33,6 @@
 #ifndef WINDOWS_H
 #define WINDOWS_H
 
-#include <QtCore/QObject>
-#include <QtGui/QWidget>
-
 class Windows : public QObject
 {
     Q_OBJECT

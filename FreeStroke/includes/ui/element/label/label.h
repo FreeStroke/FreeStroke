@@ -33,8 +33,6 @@
 #ifndef LABEL_H
 #define LABEL_H
 
-#include <QtGui/QLabel>
-
 #include "../element.h"
 
 /*!

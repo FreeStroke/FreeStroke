@@ -27,10 +27,6 @@
 #include "../../../../includes/ui/element/button/menubuttonelement.h"
 #include "../../../../includes/common/utils.h"
 
-#include <QtGui/QAbstractButton>
-#include <QtGui/QPainter>
-#include <QtGui/QMouseEvent>
-
 MenuButtonElement::MenuButtonElement(QPixmap pIcon, QPixmap pIconSelected, QWidget * parent) : QAbstractButton(parent), Element(this)
 {
     this->setFixedWidth(49);

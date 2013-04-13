@@ -33,15 +33,11 @@
  * \brief Access to the database
  * \date 2013-02-12
  */
-#include <QtCore/QObject>
-#include <QtGui/QDesktopServices>
-#include <iostream>
 
-#include "sqlite3.h"
 #include "../daolayer/record.h"
 #include "../common/gesture.h"
 #include "historyrecord.h"
-
+#include "sqlite3.h"
 
 #define DBNAME "FreeStroke" /*!< The name of the database */
 
@@ -53,7 +49,7 @@
  */
 class DAOLayer : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 signals:
 

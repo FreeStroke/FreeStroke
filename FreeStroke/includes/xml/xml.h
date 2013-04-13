@@ -34,10 +34,7 @@
  * \date 2013-02-12
  */
 
-#include <QtCore/QList>
-#include <QtCore/QString>
-#include <QtCore/QFile>
-#include <QtXml/QtXml>
+#include <QtXml>
 
 #include "../../includes/common/gesture.h"
 #include "../../includes/daolayer/record.h"

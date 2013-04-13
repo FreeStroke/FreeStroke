@@ -33,9 +33,6 @@
 #ifndef STEPSTUTORIAL_H
 #define STEPSTUTORIAL_H
 
-#include <QtCore/QObject>
-#include <QtGui/QWidget>
-
 #include "../../includes/ui/stepper/stepper.h"
 
 /*!

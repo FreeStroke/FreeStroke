@@ -33,8 +33,6 @@
 #ifndef TEXTFIELDELEMENT_H
 #define TEXTFIELDELEMENT_H
 
-#include <QtGui/QLineEdit>
-
 #include "../element.h"
 
 /*!

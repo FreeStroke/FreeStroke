@@ -34,8 +34,6 @@
 #ifndef LISTVIEW_H
 #define LISTVIEW_H
 
-#include <QtGui/QWidget>
-
 #include "glview/glview.h"
 #include "element/button/buttonelement.h"
 #include "../../includes/ui/gesturelistview/gesturelistview.h"

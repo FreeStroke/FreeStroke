@@ -36,8 +36,6 @@
 #include "../common/gesture.h"
 #include "command.h"
 
-#include <QtCore/QString>
-
 /*!
  * \brief Represents a record object composed by a gesture and a command
  */

@@ -33,8 +33,6 @@
 #ifndef STEPPERCONTROLLER_H
 #define STEPPERCONTROLLER_H
 
-#include <QtCore/QList>
-
 #include "stepper.h"
 
 #include "../../includes/common/controller.h"

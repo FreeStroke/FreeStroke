@@ -34,11 +34,6 @@
 #ifndef LOGISTICREGRESSIONALGORITHM_H
 #define LOGISTICREGRESSIONALGORITHM_H
 
-#include <QtCore/QThread>
-#include <QtCore/QString>
-#include <QtCore/QHash>
-#include <QtCore/QList>
-
 #include "../data/inputgesture.h"
 #include "../../daolayer/record.h"
 

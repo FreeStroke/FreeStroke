@@ -33,8 +33,6 @@
 #ifndef ALLFEATURES_H
 #define ALLFEATURES_H
 
-#include <QtCore/QList>
-
 #include "../data/inputgesture.h"
 #include "gesturefeature.h"
 #include "neutralfeature.h"

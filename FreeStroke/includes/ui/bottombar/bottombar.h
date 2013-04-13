@@ -35,8 +35,6 @@
 #ifndef BOTTOMBAR_H
 #define BOTTOMBAR_H
 
-#include <QtGui/QWidget>
-
 #include "../element/element.h"
 #include "../bottombar/bottombarseparator.h"
 

@@ -29,8 +29,6 @@
 
 #include <math.h>
 
-#include <QtCore/QDebug>
-
 NeutralFeature::NeutralFeature()
 {
     this->weights = new QList<float>;

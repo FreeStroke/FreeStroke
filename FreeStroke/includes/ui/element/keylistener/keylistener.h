@@ -34,9 +34,6 @@
 #ifndef KEYLISTENERELEMENT_H
 #define KEYLISTENERELEMENT_H
 
-#include <QtCore/QString>
-#include <QtGui/QLineEdit>
-
 #include "../element.h"
 
 /*!

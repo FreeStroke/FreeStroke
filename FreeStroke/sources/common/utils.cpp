@@ -26,10 +26,6 @@
 */
 #include "../../includes/common/utils.h"
 
-#include <QtCore/QCoreApplication>
-#include <QtGui/QDesktopServices>
-#include <QtCore/QDir>
-
 QFont Utils::getFont()
 {
     QFont f("Arial");
@@ -42,10 +38,10 @@ QString Utils::getDatabaseDirectoryLocation()
 #if defined(Q_OS_UNIX) && !defined(Q_OS_DARWIN) && defined(UNITTEST)
     return QDir::toNativeSeparators(Utils::getApplicationDirectoryRoot() + "FreeSoft/FreeStroke/");
 #elif defined(Q_OS_DARWIN)
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + "/FreeSoft/FreeStroke/");
+    return QDir::toNativeSeparators(QStandardPaths::standardLocations(QStandardPaths::DataLocation).at(0) + "/FreeSoft/FreeStroke/");
 #else
     // @see https://bugreports.qt-project.org/browse/QTBUG-10772
-    QString dataLocation = QDir::toNativeSeparators(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+    QString dataLocation = QDir::toNativeSeparators(QStandardPaths::standardLocations(QStandardPaths::DataLocation).at(0));
     if(dataLocation.endsWith(QDir::toNativeSeparators("//")))
     {
         dataLocation.chop(1);

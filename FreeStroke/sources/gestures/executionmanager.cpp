@@ -27,8 +27,6 @@
 #include "../../includes/gestures/executionmanager.h"
 #include "../../includes/daolayer/daolayer.h"
 
-#include <QtCore/QDebug>
-
 #include <math.h>
 
 ExecutionManager::ExecutionManager()

@@ -33,11 +33,8 @@
  * \brief Representation of an history record
  * \date 2013-02-12
  */
-#include <iostream>
-#include <QtCore/QString>
 
 #include "record.h"
-
 
 /*!
  * \class HistoryRecord

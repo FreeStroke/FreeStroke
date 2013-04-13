@@ -33,8 +33,6 @@
 #ifndef BUTTONELEMENT_H
 #define BUTTONELEMENT_H
 
-#include <QtGui/QAbstractButton>
-
 #include "../element.h"
 
 /*!

@@ -32,11 +32,6 @@
  * \brief TCP communication with a controller
  * \date 2013-02-13
  */
-#include <QtCore/QDebug>
-#include <QtCore/QByteArray>
-#include <QtCore/QTimer>
-#include <QtNetwork/QHostAddress>
-#include <QtNetwork/QTcpSocket>
 
 #include "../../includes/daolayer/daolayer.h"
 #include "../../includes/network/diffiehellman.h"

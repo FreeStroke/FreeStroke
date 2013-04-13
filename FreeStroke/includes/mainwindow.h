@@ -34,10 +34,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGui/QMainWindow>
-#include <QtCore/QEvent>
-#include <QtGui/QSystemTrayIcon>
-
 #include "../../includes/gestures/executionmanager.h"
 #include "../../includes/network/communication.h"
 #include "../../includes/ui/executionview.h"

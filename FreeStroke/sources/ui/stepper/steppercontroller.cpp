@@ -24,9 +24,6 @@
 * License along with this library; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
 */
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtCore/QDebug>
 
 #include "../../includes/mainwindow.h"
 #include "../../includes/ui/stepper/steppercontroller.h"

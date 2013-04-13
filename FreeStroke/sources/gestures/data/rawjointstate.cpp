@@ -30,13 +30,6 @@
 #include "../../includes/common/math.h"
 #include "../../includes/common/utils.h"
 
-#include <QtCore/QString>
-#include <QtCore/QHash>
-#include <QtCore/QStringList>
-#include <QtCore/QFile>
-
-#include <QtCore/QDebug>
-
 RawJointState::RawJointState()
 {
     this->timestamp = -1;

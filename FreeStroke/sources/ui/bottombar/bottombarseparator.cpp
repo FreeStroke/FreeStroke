@@ -26,9 +26,6 @@
 */
 #include "../../includes/ui/bottombar/bottombarseparator.h"
 
-#include <QtGui/QPainter>
-#include <QtGui/QHBoxLayout>
-
 BottomBarSeparator::BottomBarSeparator(QWidget *parent) : QWidget(parent)
 {
     this->setStyleSheet("background: transparent;");
