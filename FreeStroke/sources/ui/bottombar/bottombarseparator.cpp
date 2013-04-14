@@ -38,5 +38,5 @@ void BottomBarSeparator::paintEvent(QPaintEvent *)
     p.setPen(Qt::NoPen);
     p.setBrush(QColor(0, 0, 0, 0.2*255));
     p.drawRect(0, 2, this->width(), this->height() - 2);
-    p.end();
+    
 }

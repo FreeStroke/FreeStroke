@@ -85,18 +85,18 @@ void Cell::init(void* pList, int pHeight)
     this->selected = false;
 
     /* GlView */
-    this->glView = new GlView(this, GlView::SMALL);
+    /*this->glView = new GlView(this, GlView::SMALL);
     this->glView->setFixedSize(36, 36);
     this->glView->move(this->width() - this->glView->width() - 30 + 1, this->height()/2 - this->glView->height()/2 + 1);
     this->glView->animateOnMouseEnter(true);
-    this->glView->hide();
+    this->glView->hide();*/
 
     /* Label */
     this->text = new Label("",this);
     this->text->setAlignment(Qt::AlignVCenter);
     this->text->setTextColor(QColor(0,0,0));
     this->text->move(10, 0);
-    this->text->resize(this->glView->pos().x() - 20, this->height());
+    //this->text->resize(this->glView->pos().x() - 20, this->height());
     QFont fText = this->text->font();
     fText.setPixelSize(16);
     this->text->setFont(fText);
@@ -122,10 +122,10 @@ Label* Cell::getDetailedText()
     return this->detailedText;
 }
 
-GlView* Cell::getGlView()
+/*GlView* Cell::getGlView()
 {
     return this->glView;
-}
+}*/
 
 bool Cell::getAlternate()
 {
@@ -256,7 +256,7 @@ void Cell::paintEvent(QPaintEvent * e)
     p.drawRect(this->rect());
 
     /* GlView */
-    p.translate(0, -translateY);
+    /*p.translate(0, -translateY);
     QPoint pos = mapToParent(this->parentWidget()->pos());
     if (pos.y() < 0 || pos.y() > this->parentWidget()->parentWidget()->height() - this->height())
     {
@@ -264,10 +264,8 @@ void Cell::paintEvent(QPaintEvent * e)
     }
     else
     {
-        //ethis->glView->show();
+        //this->glView->show();
         p.setBrush(QColor("#b6bbbf"));
         p.drawRoundedRect(this->glView->pos().x()-1, this->glView->pos().y()-1, this->glView->size().width()+2, this->glView->size().height()+2, 4, 4);
-    }
-
-    p.end();
+    }*/
 }

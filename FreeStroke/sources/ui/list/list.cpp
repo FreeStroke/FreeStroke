@@ -36,7 +36,7 @@ List::List(QWidget *parent) : QWidget(parent)
 
     ScrollBar* verticalScrollBar = new ScrollBar(Qt::Vertical, this);
     this->scroll->setVerticalScrollBar(verticalScrollBar);
-    this->scroll->setStyleSheet("QScrollArea {background-color: transparent; border-right: none; border-left: none; border-top: none; border-bottom: none;}");
+    this->scroll->setStyleSheet("QScrollArea {background-color: transparent; border: none;}");
     this->scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 

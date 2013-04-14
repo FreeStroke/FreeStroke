@@ -165,7 +165,7 @@ void DialogButton::paintEvent(QPaintEvent * event)
 	p.setPen(QColor(0, 0, 0));
     p.drawText(0, -1, this->width(), this->height(), Qt::AlignCenter, this->text());
 
-	p.end();
+	
 
     QPushButton::paintEvent(event);
 }

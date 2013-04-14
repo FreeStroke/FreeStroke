@@ -114,7 +114,7 @@ public:
      * \brief return the GlView of the Cell
      * \return the GlView of the Cell
      */
-    GlView* getGlView();
+    //GlView* getGlView();
     /*!
      * \brief returns a boolean representing the alternate state of the Cell
      * \return a boolean representing the alternate state of the Cell
@@ -172,7 +172,7 @@ private:
     /*!
      * \brief glView the GlView of the Cell.
      */
-    GlView *glView;
+    //GlView *glView;
 
     /*!
      * \brief gesture the Gesture which is displayed in the GlView

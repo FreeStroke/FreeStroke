@@ -78,5 +78,5 @@ void CellController::paintEvent(QPaintEvent * e)
         p.setBrush(QColor(99,103,106));
     }
     p.drawRect(this->rect());
-    p.end();
+    
 }

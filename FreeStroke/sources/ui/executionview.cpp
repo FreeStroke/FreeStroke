@@ -49,7 +49,6 @@ ExecutionView::ExecutionView(QWidget *parent) : QWidget(parent)
     this->labelNoHistory = new Label(tr("No history to display"), this);
     this->btnTrash = new ButtonElement(this);
 
-
     if(this->dao == NULL)
     {
         qDebug() << "dao is NULL :'(";
@@ -63,7 +62,7 @@ ExecutionView::ExecutionView(QWidget *parent) : QWidget(parent)
         foreach(HistoryRecord* hr, *historyRecords)
         {
             Cell* c = new Cell(hr, this->gestureListView);
-            c->getGlView()->setGesture(hr->getRecordExecuted()->getGestures()->at(0));
+            //c->getGlView()->setGesture(hr->getRecordExecuted()->getGestures()->at(0));
             this->gestureListView->addCell(c);
         }
     }
@@ -145,7 +144,7 @@ void ExecutionView::skeletonDataRecieved(QString pData)
 void ExecutionView::historyRecordAdded(HistoryRecord * historyRecord)
 {
     Cell* c = new Cell(historyRecord, this->gestureListView);
-    c->getGlView()->setGesture(historyRecord->getRecordExecuted()->getGestures()->at(0));
+    //c->getGlView()->setGesture(historyRecord->getRecordExecuted()->getGestures()->at(0));
     this->gestureListView->insertCellAtHead(c);
     this->historyChanged();
 }

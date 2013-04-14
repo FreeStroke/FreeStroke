@@ -125,7 +125,7 @@ void Cursor::paintEvent(QPaintEvent * e)
                   this->width()/2 - 4,
                   this->height()/2 - 4);
 
-    p.end();
+    
 }
 
 Switcher::Switcher(QWidget * parent, bool pState) : QAbstractButton(parent), Element(this)
@@ -241,5 +241,5 @@ void Switcher::paintEvent(QPaintEvent * e)
     else
         p.drawText(rect, Qt::AlignRight | Qt::AlignVCenter, this->text());
 
-    p.end();
+    
 }

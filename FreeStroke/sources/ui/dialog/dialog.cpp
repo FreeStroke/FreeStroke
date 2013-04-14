@@ -325,5 +325,5 @@ void Dialog::paintEvent(QPaintEvent * event)
     p.drawRect(0, 0, this->width(), 52);
     p.translate(0, -(this->height() - 52));
 
-    p.end();
+    
 }

@@ -99,7 +99,7 @@ void TextField::paintEvent(QPaintEvent *e)
     p.setBrush(QColor(255, 255, 255));
     p.drawRoundedRect(1, 1, this->width() -2, this->height() -3, 4, 4);
 
-    p.end();
+    
 
     QLineEdit::paintEvent(e);
 }

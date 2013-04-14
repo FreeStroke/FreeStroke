@@ -91,16 +91,21 @@ void Notification::destroy()
 
 void Notification::mousePressEvent(QMouseEvent * e)
 {
+    Q_UNUSED(e)
 }
 
 void Notification::mouseReleaseEvent(QMouseEvent * e)
 {
+    Q_UNUSED(e)
+
 	if (mIsClosable)
 		this->destroy();
 }
 
 void Notification::paintEvent(QPaintEvent * e)
 {
+    Q_UNUSED(e)
+
 	QPainter p(this);
 	
 	int textOffset = 15 + 42 + 15;
@@ -140,6 +145,10 @@ void Notification::paintEvent(QPaintEvent * e)
             i = QPixmap(Utils::getResourcesDirectory() + "success.png");
 			break;
 		}
+    case Notification::Progress:
+        {
+            break;
+        }
 	}
 	
 	p.drawPixmap(QPointF(15, (this->height() / 2) - (i.height() / 2)), i);
@@ -156,5 +165,5 @@ void Notification::paintEvent(QPaintEvent * e)
 		p.setPen(QPen(QBrush(QColor("#f1f3f5")), 1));
 		p.drawLine(1, this->height() - 1, this->width() - 2, this->height() - 1);
 	}
-    p.end();
+    
 }

@@ -98,6 +98,6 @@ void Label::paintEvent(QPaintEvent *)
         p.drawPixmap(0,0,this->width(),this->height(),*this->pixmap());
     }
 
-    p.end();
+    
 }
 

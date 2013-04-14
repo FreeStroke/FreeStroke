@@ -59,5 +59,5 @@ void GestureParams::paintEvent(QPaintEvent *e)
 
     p.setPen(QColor("#7d7d7d"));
     p.drawLine(0, this->height()-1, this->width(), this->height()-1);
-    p.end();
+    
 }

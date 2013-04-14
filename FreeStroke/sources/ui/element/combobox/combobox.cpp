@@ -84,5 +84,5 @@ void ComboBox::paintEvent(QPaintEvent * e)
 
     p.drawPixmap(rect.width()- 23, 1, 25, 25, *this->pixmap);
 
-    p.end();
+    
 }

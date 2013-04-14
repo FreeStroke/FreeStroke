@@ -66,7 +66,7 @@ void Key::paintEvent(QPaintEvent *e)
     p.setPen(Qt::black);
     p.drawText(this->rect(), Qt::AlignCenter, this->key);
 
-    p.end();
+    
 }
 
 KeyListener::KeyListener(QWidget *parent) : QWidget(parent), Element(this)
@@ -225,6 +225,6 @@ void KeyListener::paintEvent(QPaintEvent *e)
     }
     p.drawRoundedRect(1, 1, this->width() -2, this->height() -3, 4, 4);
 
-    p.end();
+    
 }
 

@@ -61,5 +61,5 @@ void ScrollBar::paintEvent(QPaintEvent * e)
     p.setPen(QColor(0, 0, 0, 0.1*255));
     p.drawLine(this->width() - 1, 0, this->width() - 1, this->height());
 
-    p.end();
+    
 }

@@ -107,5 +107,5 @@ void BottomBar::paintEvent(QPaintEvent *)
         p.setPen(QColor(0, 0, 0, 0.1*255));
         p.drawLine(0, 2, 0, this->height() - 2);
     }
-    p.end();
+    
 }

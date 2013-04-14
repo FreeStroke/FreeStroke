@@ -132,5 +132,5 @@ void ButtonElement::paintEvent(QPaintEvent *e)
         p.drawText(rect.x(), rect.y() + 1, rect.width()-xOffset, rect.height(), align, this->text);
     }
 
-    p.end();
+    
 }

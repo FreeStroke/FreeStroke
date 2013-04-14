@@ -175,5 +175,5 @@ void Notifications::paintEvent(QPaintEvent * e)
     p.setBrush(g);
     p.drawRoundedRect(1, 2, this->width() - 2, this->height() - 3, 6, 6);
 
-    p.end();
+    
 }

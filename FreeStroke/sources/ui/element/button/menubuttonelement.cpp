@@ -133,5 +133,5 @@ void MenuButtonElement::paintEvent(QPaintEvent *e)
                      this->pixmap->width(), this->pixmap->height(), *this->pixmap);
     }
 
-    p.end();
+    
 }
