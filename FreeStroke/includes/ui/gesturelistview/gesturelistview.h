@@ -47,6 +47,9 @@ public:
      * \param parent the parent of the GestureListView
      */
     GestureListView(QWidget *parent);
+
+protected:
+    void paintEvent(QPaintEvent *);
 };
 
 #endif // GESTURELISTVIEW_H

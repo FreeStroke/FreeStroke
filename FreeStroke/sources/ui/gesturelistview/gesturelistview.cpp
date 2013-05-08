@@ -29,3 +29,11 @@
 GestureListView::GestureListView(QWidget *parent) : List(parent)
 {
 }
+
+
+void GestureListView::paintEvent(QPaintEvent *)
+{
+    QPainter p(this);
+    p.setPen(QColor(0, 0, 0, 0.2*255));
+    p.drawLine(this->width()-2, 0, this->width()-2, this->height());
+}
