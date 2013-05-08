@@ -228,39 +228,6 @@ bool MainWindow::event(QEvent *event)
     return QMainWindow::event(event);
 }
 
-void MainWindow::closeEvent(QCloseEvent * e)
-{
-    QWidget * w = QApplication::focusWidget();
-    KeyListener *keyListener = dynamic_cast<KeyListener*>(w);
-    if(keyListener != NULL)
-    {
-#if !defined(Q_OS_WIN32)
-        keyListener->keyPressEvent(new QKeyEvent(QEvent::KeyPress, Qt::Key_Q, Qt::ControlModifier));
-#endif
-        return;
-    }
-    Dialog *d = new Dialog("", this);
-    d->addButton(tr("Yes"), Dialog::Accept, DialogButton::Normal, true);
-    d->addButton(tr("No"), Dialog::Reject, DialogButton::Normal);
-    Dialog::DialogCode dc;
-    dc = d->displayNotification(Dialog::Information, tr("This application should not be closed."), tr("Do you really want to close FreeStroke ?"));
-    if (dc == Dialog::Accepted)
-    {
-        DAOLayer *dao = DAOLayer::getInstance();
-        if(dao != NULL)
-        {
-            delete dao;
-        }
-        delete this->sticon;
-        QCoreApplication::quit();
-    }
-    if (e != NULL)
-    {
-        e->ignore();
-    }
-    this->hideWindow();
-}
-
 void MainWindow::open(QSystemTrayIcon::ActivationReason reason)
 {
     if(reason != QSystemTrayIcon::Context)

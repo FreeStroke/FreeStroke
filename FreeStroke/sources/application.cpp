@@ -26,6 +26,7 @@
 */
 
 #include "../../includes/application.h"
+#include "../../includes/ui/dialog/dialog.h"
 #include "../../includes/ui/element/keylistener/keylistener.h"
 
 static bool control = false;
@@ -33,11 +34,15 @@ static bool meta = false;
 static bool shift = false;
 
 Application::Application(int &argc, char **argv) : QApplication(argc, argv)
-{}
+{
+    w.show();
+    w.raise();
+    w.getParameterView()->checkFirstLaunch();
+    w.getParameterView()->checkController();
+}
 
 void Application::restart()
 {
-    //TODO missing linux
     QProcess	mProcess;
     QString str = "";
 #if defined(Q_OS_WIN32)
@@ -79,6 +84,41 @@ Qt::KeyboardModifier Application::getModifiers()
 
 bool Application::notify (QObject * receiver, QEvent *e)
 {
+    if (receiver == &w && e->type() == QEvent::Close)
+    {
+        /* Check if we are not in a keylistener */
+        QWidget * focusWidget = QApplication::focusWidget();
+        KeyListener *keyListener = dynamic_cast<KeyListener*>(focusWidget);
+        if(keyListener != NULL)
+        {
+#if !defined(Q_OS_WIN32)
+            keyListener->keyPressEvent(new QKeyEvent(QEvent::KeyPress, Qt::Key_Q, Qt::ControlModifier));
+#endif
+            e->ignore();
+            return false;
+        }
+
+        Dialog *d = new Dialog("", &w);
+        d->addButton(tr("Yes"), Dialog::Accept, DialogButton::Normal, true);
+        d->addButton(tr("No"), Dialog::Reject, DialogButton::Normal);
+        Dialog::DialogCode dc;
+        dc = d->displayNotification(Dialog::Information, tr("This application should not be closed."), tr("Do you really want to close FreeStroke ?"));
+        qDebug() << dc;
+        if (dc == Dialog::Accepted)
+        {
+            DAOLayer *dao = DAOLayer::getInstance();
+            if(dao != NULL)
+            {
+                delete dao;
+            }
+            QCoreApplication::quit();
+            return true;
+        }
+
+        w.hideWindow();
+        e->ignore();
+        return false;
+    }
     if (e->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(e);

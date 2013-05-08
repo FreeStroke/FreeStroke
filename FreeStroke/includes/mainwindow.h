@@ -80,9 +80,9 @@ public:
     ParametersView *getParameterView();
 
     /*!
-     * \brief closeEvent the event which is called when the MainWindow is closed. Ask the user to confirm to close the window.
+     * \brief hideWindow hide the MainWindow
      */
-    void closeEvent(QCloseEvent *);
+    void hideWindow();
 
 private:
     /*!
@@ -140,10 +140,6 @@ private slots:
      * \brief open the MainWindow, set it visible and raise it
      */
     void open(QSystemTrayIcon::ActivationReason);
-    /*!
-     * \brief hideWindow hide the MainWindow
-     */
-    void hideWindow();
     /*!
      * \brief close close the MainWindow
      */

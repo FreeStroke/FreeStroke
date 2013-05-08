@@ -80,6 +80,9 @@ protected:
      * \return if the nofication must be send
      */
     bool notify (QObject * receiver, QEvent *e);
+
+private:
+    MainWindow w;
 };
 
 #endif

@@ -81,12 +81,6 @@ int main(int argc, char *argv[])
         a.installTranslator(&translator);
     }
 
-    MainWindow w;
-    w.show();
-    w.raise();
-    w.getParameterView()->checkFirstLaunch();
-    w.getParameterView()->checkController();
-
     result =  a.exec();
     QApplication::exit(result);
     return result;
