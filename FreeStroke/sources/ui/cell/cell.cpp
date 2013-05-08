@@ -43,7 +43,7 @@ Cell::Cell(Record* pRecord, void* pList, int pHeight) : QAbstractButton((QWidget
     this->setText(pRecord->getName());
     this->record = pRecord;
     this->gesture = pRecord->getGestures()->at(0);
-    this->glView->setGesture(this->gesture);
+    //this->glView->setGesture(this->gesture);
 }
 
 Cell::Cell(HistoryRecord* pHistoryRecord, void *pList, int pHeight) : QAbstractButton((QWidget*)pList)
@@ -52,7 +52,7 @@ Cell::Cell(HistoryRecord* pHistoryRecord, void *pList, int pHeight) : QAbstractB
     this->setText(pHistoryRecord->getRecordExecuted()->getName());
     this->record = NULL;
     this->gesture = pHistoryRecord->getRecordExecuted()->getGestures()->at(0);
-    this->glView->setGesture(this->gesture);
+    //this->glView->setGesture(this->gesture);
     this->setDetailedText(pHistoryRecord->getExecutionDate());
 }
 
@@ -63,7 +63,7 @@ Cell::Cell(void* pList, bool noGl) : QAbstractButton((QWidget*)pList)
     this->list = pList;
     this->alternateColor = false;
     this->selected = false;
-    this->glView = NULL;
+    //this->glView = NULL;
     this->text = NULL;
     this->detailedText = NULL;
 }
