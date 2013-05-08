@@ -79,11 +79,6 @@ public:
      */
     ParametersView *getParameterView();
 
-    /*!
-     * \brief hideWindow hide the MainWindow
-     */
-    void hideWindow();
-
 private:
     /*!
      * \brief createTopBar creates the TopBar which contains the three MenuButtonElement related to the three views
@@ -130,6 +125,10 @@ public slots:
      * \brief showParameters show the ParametersView
      */
     void showParameters();
+    /*!
+     * \brief hideWindow hide the MainWindow
+     */
+    void hideWindow();
 
 private slots:
     /*!
