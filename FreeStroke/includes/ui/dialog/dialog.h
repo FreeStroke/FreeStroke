@@ -62,8 +62,8 @@ public:
      */
 	enum Role
 	{
-        Accept,
-        Reject
+        Reject,
+        Accept
 	};
 public:
     /*!
