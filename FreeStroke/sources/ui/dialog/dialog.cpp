@@ -34,11 +34,13 @@ QPixmap * Dialog::pixmapTick = 0;
 QPixmap * Dialog::pixmapCross = 0;
 QPixmap * Dialog::pixmapWarn = 0;
 
-Dialog::Dialog(QString pTitle, QWidget * parent) : QDialog(parent)
+Dialog::Dialog(QString pTitle, QWidget * parent) : QDialog(0)
 {
-    this->setWindowModality(Qt::ApplicationModal);
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
+    //this->setWindowModality(Qt::ApplicationModal);
+    //this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
     this->setAttribute(Qt::WA_DeleteOnClose);
+
+    this->setWindowFlags(Qt::Popup);
 
     this->setMinimumSize(340, 93);
     this->setMaximumSize(800, 600);
