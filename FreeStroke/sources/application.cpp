@@ -103,7 +103,6 @@ bool Application::notify (QObject * receiver, QEvent *e)
         d->addButton(tr("No"), Dialog::Reject, DialogButton::Normal);
         Dialog::DialogCode dc;
         dc = d->displayNotification(Dialog::Information, tr("This application should not be closed."), tr("Do you really want to close FreeStroke ?"));
-        qDebug() << dc;
         if (dc == Dialog::Accepted)
         {
             DAOLayer *dao = DAOLayer::getInstance();
