@@ -48,9 +48,8 @@
  * \brief Class providing key events generations on Linux.
  * Contains methods for generating key events on Linux distributions
  */
-class Linux : public QObject
+class Linux
 {
-	Q_OBJECT
 public:
     /*!
      * \brief Creates XKeyEvent structure from X11 API

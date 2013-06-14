@@ -34,6 +34,7 @@
 
 #ifndef KEYCONVERTER_H
 #define KEYCONVERTER_H
+#include <QKeySequence>
 
 #ifdef Q_OS_DARWIN
 #include "../../../others/mac/mac.h"
